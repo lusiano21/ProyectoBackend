@@ -6,8 +6,10 @@ import __dirname from './utils.js';
 import path from 'path'
 import passport from 'passport';
 import initPassport from './config/passport.config.js';
+import { addLogger } from './utils/logger.js'
 
 const app = express();
+app.use(addLogger)
 const PORT = process.env.PORT||8080;
 const connection = mongoose
 .set('strictQuery', true)

@@ -64,7 +64,7 @@ const products = productsRequest.reduce((result, item)=> {
   const order = await createOrder(newOrder)
   console.log("order", order)
   console.log("order", user.phone.toString())
-  //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra `)
+  const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra `)
   console.log("Resultado final",result)
   return {
     status: 'success',

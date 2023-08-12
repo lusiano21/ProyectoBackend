@@ -25,7 +25,6 @@ app.use('/', routers)
 
 app.use((error, req, res, next) => {
     req.logger.warning( 'Cuidado ',error)
-    console.error('Error en el middelware', error)
     res
       .status(error.status || 500)
       .send({ message: error.message })

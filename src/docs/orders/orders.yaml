@@ -129,6 +129,18 @@ components:
     updateOrder:
       type: object
       properties:
+        user: 
+         type: string
+         description: ID del usuario
+        business:
+         type: string
+         description: ID del business
+        products:
+         type: array
+         description: Los menus que usuario ordeno usuando id, precio, cantidad del menu
+        total:
+         type: number
+         description: Muestra el total de la orden del usuario
         status:
          type: tring
          description: Muestra el estado de la Orden ['pending','completed','canceled']
@@ -139,5 +151,5 @@ components:
          id: 1
          quantity: 2
          price: 4000
-        total: "jp@email.com"
+        total: 8000
         status: "pending"

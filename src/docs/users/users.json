@@ -1,0 +1,17 @@
+{
+    "paths": {
+      "/api/sessions/user": {
+        "get": {
+          "summary": "Get all users",
+          "responses": {
+            "200": {
+              "description": "Lista de usuarios"
+            },
+            "500": {
+              "description": "Error interno del servidor"
+            }
+          }
+        }
+      }
+    }
+  }

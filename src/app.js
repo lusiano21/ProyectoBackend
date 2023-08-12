@@ -7,7 +7,8 @@ import path from 'path'
 import passport from 'passport';
 import initPassport from './config/passport.config.js';
 import { addLogger } from './utils/logger.js'
-
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 
 const app = express();
 app.use(addLogger)
@@ -18,10 +19,23 @@ const connection = mongoose
 
 app.use(express.json());
 app.use(cookieParser());
+const swaggerOptions = {
+  definition:{
+    openapi:'3.0.1',
+    info:{
+      title:'Adoptme API',
+      description:'Esta es la documentación de la API de Adoptme. Una aplicación para adoptar mascotas',
+    },
+  },
+  apis:[path.join(__dirname, 'docs','**','*.yaml')],
+};
 app.use('/static', express.static(path.join(__dirname, './public')))
+const specs = swaggerJsDoc(swaggerOptions);
 
 initPassport()
 app.use(passport.initialize())
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/', routers)
 
 app.use((error, req, res, next) => {

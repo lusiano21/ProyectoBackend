@@ -11,7 +11,7 @@ import {
 import {
   getBusinessById,
 } from '../dao/business.js'
-//import twilioService from '../servicios/twilio.service.js'
+import twilioService from '../servicios/twilio.service.js'
 import { NotFoundException } from '../utils/exception.js'
 
 export const get = async (query = {}) => {

@@ -19,7 +19,7 @@ paths:
     get:
       summary: Obtiene un busines por su ID
       tags:
-        - Users
+        - Business
       parameters:
         - in: path
           name: uid
@@ -69,7 +69,7 @@ paths:
     delete:
       summary: Elimina un busines por su ID
       tags:
-        - Users
+        - Business
       parameters:
         - in: path
           name: uid

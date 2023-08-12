@@ -1,11 +1,10 @@
 
 import jsonwebtoken from 'jsonwebtoken'
 import passport from 'passport'
-import config from '../config/config.js'
 import bcrypt from 'bcrypt';
 
 
-const JWT_SECRET = config.clueJWT
+const JWT_SECRET = process.env.CLUE_JWT_SECRET
 import Exception from './exception.js'
 
 export const tokenGenerator = (user) => {

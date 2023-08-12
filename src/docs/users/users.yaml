@@ -92,35 +92,64 @@ components:
         _id:
           type: string
           description: ID del usuario
-        first_name:
+        nombre:
           type: string
           description: Nombre del usuario
-        last_name:
+        apellido:
           type: string
           description: Apellido del usuario
+        edad:
+          type: number
+          description: Edad del usuario
+        avatar:
+          type: string
+          description: Avatar del usuario
+        dni:
+          type: string 
+          description: El Documento Nacional de Identidad (DNI) del usuario
+        rol: 
+          type: string
+          description: Rol del usuario ("user" o "admin")
         email:
           type: string
           description: Correo del usuario
+        phone:
+          type: number
+          description: Numero de telefono del usuario
         password:
           type: string
           description: Contraseña del usuario
+        orders: 
+          default: []
+          description: Ver las ordenes que se adquirieron del usuario
+        domicilios:
+          default: []
+          description: Ver los domicilios del usuarios
       example:
         _id: 60f0a9c9e6b3c2b4b8a6b2a0
-        first_name: Juan
-        last_name: Perez
-        email: jp@email.com
-        password: 123456
-  
+        fullname: Juan Perez
+        edad: 21
+        avatar: https://proyectobackend-production-7b29.up.railway.app/static/img/streaming-twitch-1268x664-1.webp
+        dni: 44845354
+        rol : user
+        email: JuanP@email.com
+        phone: 1511111111
+        password: $2b$10$aBgP3bprLTtZ3Epk.CLIEuqS2Ec5CxiCeYVTseIouXgkxVkiHz6pG
+        orders: []
+        domicilios: []
   requestBodies:
     updateUser:
       type: object
       properties:
-        first_name:
+        nombre:
           type: string
           description: Nombre del usuario
-        last_name:
+        apellido:
           type: string
           description: Apellido del usuario
+        edad:
+          type: string
+          description: Edad del usuario
         email:
           type: string
           description: Correo del usuario
@@ -128,7 +157,8 @@ components:
           type: string
           description: Contraseña del usuario
       example:
-        first_name: "Juan"
-        last_name: "Perez"
+        nombre: "Juan"
+        apellido: "Perez"
+        edad: 21
         email: "jp@email.com"
         password: "123456"

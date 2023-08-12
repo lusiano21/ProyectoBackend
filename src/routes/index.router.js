@@ -9,7 +9,6 @@ const router = Router()
 router.use('/api/sessions', BusinessRouter, UsuarioRouter, OrdersRouter, DomiciliosRouter, SessionsRouter)
 router.use('/api', ViewsRouter)
 router.get('*', (req, res) => { 
-    req.logger.info('Herror con la encontrar la pagina')
     //req.logger.error('Esto fue un error')
     res.status(404).json({ error: 'Endpoint not found' }) })
 export default router;

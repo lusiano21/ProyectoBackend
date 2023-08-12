@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="./index.css">
+  <script src="/socket.io/socket.io.js"> </script>
+  <title>Private Zone</title>
+</head>
+<body>
+  <main>
+    <article>
+      <header id="avatar" class="cart">
+      </header>
+      <div id="profile" >
+      </div>
+      <footer>
+      <button id="sign-out" >Sign Out</button>
+      </footer>
+    </article>
+  </main>
+  <footer class="col-12 d-flex flex-column align-items-center">
+    <h2>Chat:</h2>
+    <ul class="list-group list-group-numbered" id="list-messages">
+    </ul> 
+    <form id="form-message">
+      <input type="text" name="mensaje" id="input-message" placeholder="Ingresa mensaje..." required>
+      <button type="submit">Enviar</button>
+    </form>
+  </footer>
+  <script src="./JavaScript/private.js"></script>
+  <script src="./JavaScript/chat.js"> </script>
+</body>
+</html>

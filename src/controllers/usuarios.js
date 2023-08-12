@@ -37,7 +37,7 @@ export const create = async (req, res, next ) => {
       apellido,
       email,
       phone,
-      avatar:`${process.env.NODE_HOST}:/static/img/${file.originalname}`,
+      avatar:`${process.env.NODE_HOST}/static/img/${file.originalname}`,
       dni,
       edad,
       password: createHash(password),

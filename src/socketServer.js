@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 
-import MensajeModel from "./src/models/mensaje.js";
+import MensajeModel from "./models/mensaje.js";
 
 let io 
 

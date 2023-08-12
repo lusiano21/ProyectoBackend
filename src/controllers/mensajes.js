@@ -1,4 +1,4 @@
-/*import MensajeModel from '../models/mensaje.js'
+import MensajeModel from '../models/mensaje.js'
 import { emit } from '../../socketServer.js'
 
 class MensajesController {
@@ -38,4 +38,4 @@ class MensajesController {
 
 }
 
-export default MensajesController*/
+export default MensajesController

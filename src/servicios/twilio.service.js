@@ -2,14 +2,14 @@ import twilio from 'twilio'
 import config from '../config/config.js'
 class TwilioService {
     constructor() {
-        this.client = twilio(config.Twilio.AccountSid, config.Twilio.AuthToken)
+        this.client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
     }
 
     async sendSMS(to, body) {
         return this.client.messages.create({
             body,
             to,
-            from: config.Twilio.PhoneNumber,
+            from: process.env.TWILIO_PHONE_NUMBER,
         })
     }
 }

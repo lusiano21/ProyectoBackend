@@ -31,5 +31,4 @@ app.use((error, req, res, next) => {
       .send({ message: error.message })
   })
 
-socketInit(app)
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`))

@@ -3,6 +3,7 @@ import { createHash } from "../utils/configBcrypt.js";
 import CustomError from '../utils/errors/CustomErros.js'
 import EnumsError from '../utils/errors/EnumsError.js'
 import { generatorUserError } from '../utils/errors/MessagesError.js'
+import { NotFoundException } from "../utils/exception.js";
 
 export const create = async (req, res, next ) => {
   try {
@@ -74,7 +75,7 @@ export const getById = async (req,res, next) => {
     const { params: {uid} } = req
     const user = await getUserById(uid);
     if (!user) {
-      res.json({ status: 404 , message: 'Nose encontro el usuario' })
+      throw new NotFoundException(`User not found :${uid}`)
     } else
     {res.status(200).json(user)}
   } catch (error) {
@@ -93,7 +94,7 @@ export const updateById = async (req,res,next) => {
     const { body, params: {uid} } = req
     const user = await getUserById(uid)
     if(!user){
-      res.json({ status: 404 , message: 'Nose encontro el usuario' })
+      throw new NotFoundException(`User not found :${uid}`)
     } else {
       const result = await updateUserById(uid, body)
       res.status(200).json(result)
@@ -107,7 +108,7 @@ export const removeById = async (req,res,next) => {
     const { params: {uid} } = req
     const user = await getUserById(uid)
     if(!user){
-      res.json({ status: 404 , message: 'Nose encontro el usuario' })
+      throw new NotFoundException(`User not found :${uid}`)
     } else {
     const result = await deleteById(uid)
     res.status(200).json(result)

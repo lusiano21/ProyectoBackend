@@ -28,9 +28,7 @@ export const create = async (body) => {
     business: businessId,
     products: productsRequest,
   } = body
-  console.log(body)
   const user = await getUserById(userId)
-  console.log(" Paso 1 ",user)
   if (!user) {
     throw new NotFoundException('Order not found')
   }
@@ -38,7 +36,6 @@ export const create = async (body) => {
   if (!business) {
     throw new NotFoundException('Order not found')
   }
-console.log(" Paso 1 ",business)
 const products = productsRequest.reduce((result, item)=> {
     const product = business.products.find((product) => product.id == item.product)
     if (product) {
@@ -60,12 +57,8 @@ const products = productsRequest.reduce((result, item)=> {
     products,
     total,
   }
-  console.log(" newOrder ",newOrder)
   const order = await createOrder(newOrder)
-  console.log("order", order)
-  console.log("order", user.phone.toString())
   const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra `)
-  console.log("Resultado final",result)
   return {
     status: 'success',
     payload: order,

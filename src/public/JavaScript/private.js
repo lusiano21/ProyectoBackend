@@ -31,7 +31,6 @@
     fetch('/api/sessions/sign-out', { method: 'POST' })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data:', data)
         if (data.success) {
           alert('Sign out successfully. Redirecting to login page...');
           window.location.href = '/static';

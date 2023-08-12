@@ -43,7 +43,6 @@ export const create = async (req, res, next ) => {
       edad,
       password: createHash(password),
     })
-    console.log('user', user)
     res.status(201).json(user)
     
   } catch (error) {
@@ -56,7 +55,6 @@ export const get = async (req,res,next) => {
     const users = await getUsers(req.query)
     res.status(200).json(users)
   } catch (error) {
-    console.log(error)
     next(error)
   }
 }

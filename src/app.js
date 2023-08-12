@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 const swaggerOptions = {
   definition:{
-    openapi:'1.5.5',
+    openapi:'3.0.1',
     info:{
       title:'RappiPlay API',
       description:'Esta es la documentación de la API de Rappiplay. pagina para comprar comida de manera online',

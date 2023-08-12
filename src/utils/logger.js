@@ -1,6 +1,6 @@
 import winston from 'winston';
 
-const env = 'production';
+const status = 'production';
 
 const options = {}
 
@@ -21,7 +21,7 @@ const customeLogger = {
   },
 }
 
-if (env === 'production') {
+if (status === 'production') {
   options.levels = customeLogger.levels
   options.transports = [
     //new winston.transports.Console({ level: 'http' }),

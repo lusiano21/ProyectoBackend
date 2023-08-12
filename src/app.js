@@ -7,7 +7,6 @@ import path from 'path'
 import passport from 'passport';
 import initPassport from './config/passport.config.js';
 import { addLogger } from './utils/logger.js'
-import http from 'http'
 import { socketInit } from './socketServer.js';
 
 const app = express();
@@ -32,6 +31,5 @@ app.use((error, req, res, next) => {
       .send({ message: error.message })
   })
 
-const server = http.createServer(app)
-socketInit(server)
+socketInit(app)
 app.listen(PORT,()=>console.log(`Listening on ${PORT}`))

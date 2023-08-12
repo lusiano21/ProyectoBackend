@@ -1,0 +1,130 @@
+paths:
+  /api/sessions/business:
+    get:
+      summary: Listar busines
+      tags:
+        - Business
+      responses:
+        200:
+          descripton: Lista de business
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Business'
+        500:
+          description: Error interno del servidor
+  /api/sessions/business/{uid}:
+    get:
+      summary: Obtiene un busines por su ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del busines
+          schema:
+            type: string
+      responses:
+        200:
+          description: Busines encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+        404:
+          description: Busines no encontrado
+        500:
+          description: Error interno del servidor
+    put:
+      summary: Actualiza un busines por su ID
+      tags:
+        - Business
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del busines
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updateBusiness'
+      responses:
+        200:
+          description: Busines actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Busines no encontrado
+        500:
+          description: Error interno del servidor
+    delete:
+      summary: Elimina un busines por su ID
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del busines
+          schema:
+            type: string
+      responses:
+        200:
+          description: Busines eliminado
+        404:
+          description: Busines no encontrado
+        500:
+          description: Error interno del servidor
+components:
+  schemas:
+    Business:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del busines
+        name:
+          type: string
+          description: Nombre del busines
+        products: 
+          id:
+           type: number
+           description: Identificador del menu
+          name: 
+           type: string
+           description: Menu del resturante
+          price:
+           type: number
+           description: Precio del menu 
+      example:
+        _id: 60f0a9c9e6b3c2b4b8a6b2a0
+        name: Mazzaro
+        products:
+         id: 1
+         name: pizza
+         price: 4000
+  requestBodies:
+    updateBusiness:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del busines
+        products:
+          type: array
+          description: Menus del business
+      example:
+        name: "Mazzaro"
+        products: 
+          id: 1
+          name: "pizza"
+          price: 4000

@@ -21,10 +21,10 @@ app.use(express.json());
 app.use(cookieParser());
 const swaggerOptions = {
   definition:{
-    openapi:'3.0.1',
+    openapi:'1.5.5',
     info:{
-      title:'Adoptme API',
-      description:'Esta es la documentación de la API de Adoptme. Una aplicación para adoptar mascotas',
+      title:'RappiPlay API',
+      description:'Esta es la documentación de la API de Rappiplay. pagina para comprar comida de manera online',
     },
   },
   apis:[path.join(__dirname, 'docs','**','*.yaml')],

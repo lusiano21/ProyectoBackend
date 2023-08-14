@@ -21,7 +21,14 @@ router.get('/business', authJWTMiddleware('admin'), async (req, res, next) => {
 
 router.post('/business',authJWTMiddleware('admin'), async (req, res, next) => {
   try {
-    const business = await create(req.body)
+    const {name, products} = req.body
+    const { file } = req
+    const business = await create({
+      name, 
+      products,
+      image:`${process.env.NODE_HOST}static/img/${file.originalname}`
+    })
+
     res.status(201).json(business)
   } catch (error) {
     next(error)

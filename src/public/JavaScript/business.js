@@ -20,6 +20,7 @@
                 }
             ]
           }
+    console.log("data:", data)
     fetch('/api/sessions/business', {
             method: 'POST',
             headers: {
@@ -27,7 +28,7 @@
             },
             body: JSON.stringify(data),
           })
-            .then((response) => response.json())
+            /*.then((response) => response.json())
             .then((data) => {
               if (data.success) {
                 alert('Login successfully. Redirecting to private page...')
@@ -39,7 +40,7 @@
             )
             .catch((error) => {
               console.error('Error:', error);
-            });
+            });*/
         console.log("data:", data)
     })
 })();

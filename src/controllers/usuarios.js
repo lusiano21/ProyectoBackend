@@ -14,6 +14,7 @@ export const create = async (req, res, next ) => {
       phone,
       dni,
       edad,
+      rol,
       password
     } = req.body
     const { file } = req
@@ -41,6 +42,7 @@ export const create = async (req, res, next ) => {
       avatar:`${process.env.NODE_HOST}static/img/${file.originalname}`,
       dni,
       edad,
+      rol,
       password: createHash(password),
     })
     res.status(201).json(user)

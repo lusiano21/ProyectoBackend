@@ -1,7 +1,8 @@
 import BusinessModel from '../models/business.js'
-
+import BusinesDTO from '../dto/Business.js'
 export const createBusiness = (business) => {
-  return BusinessModel.create(business)
+  const businesDto = new BusinesDTO(business)
+  return BusinessModel.create(businesDto)
 }
 
 export const getBusinesses = (query) => {

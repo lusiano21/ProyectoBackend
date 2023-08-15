@@ -2,9 +2,8 @@ import UsuarioModel from '../models/usuario.js'
 import UsuarioDTO from '../dto/Usuario.js'
 
 export const createUser = (user) => {
-    const constactDto = new UsuarioDTO(user)
-    console.log('constactDto',constactDto)
-    return UsuarioModel.create(constactDto)
+    const userDto = new UsuarioDTO(user)
+    return UsuarioModel.create(userDto)
   }
 
   export const getUsers = (query) =>  {

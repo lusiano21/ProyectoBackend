@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { authJWTMiddleware } from '../../utils/configBcrypt.js'
+import { uploader } from '../../utils/multer.js'
 import {
   get,
   create,
@@ -19,16 +20,19 @@ router.get('/business', authJWTMiddleware('admin'), async (req, res, next) => {
   }
 })
 
-router.post('/business',authJWTMiddleware('admin'), async (req, res, next) => {
+router.post('/business',uploader.single('avatar'),authJWTMiddleware('admin'), async (req, res, next) => {
   try {
     const {name, id, menu, price} = req.body
     const { file } = req
+    console.log("body", body)
     console.log("name",name)
     console.log("products",id, menu, price)
     console.log("file", file)
     const business = await create({
       name, 
-      products,
+      id,
+      menu,
+      price,
       image:`${process.env.NODE_HOST}static/img/${file.originalname}`
     })
     console.log('Resultado final',business)

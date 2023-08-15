@@ -19,14 +19,14 @@
         cardBody.className("card-body")
         let menuId = document.createElement("h5");
         menuId.className = "card-title" 
-        menu.innerHTML= `Menu: ${product.id}`;
+        menuId.innerHTML= `Menu: ${product.id}`;
         let name_product = document.createElement("h4");
         name_product.className = "card-title" 
         name_product.innerHTML=`${product.menu}`;
         let price_product = document.createElement("p");
         price_product.className = "card-text"
         price_product.innerHTML=`Precio: $${product.price}`;
-        cardBody.append(menu);
+        cardBody.append(menuId);
         cardBody.append(name_product);
         cardBody.append(price_product);
         card.append(cardBody);

@@ -24,7 +24,6 @@ router.post('/business',uploader.single('image'),authJWTMiddleware('admin'), asy
   try {
     const {name, id, menu, price} = req.body
     const { file } = req
-    console.log("body", body)
     console.log("name",name)
     console.log("products",id, menu, price)
     console.log("file", file)

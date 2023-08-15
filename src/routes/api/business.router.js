@@ -21,11 +21,11 @@ router.get('/business', authJWTMiddleware('admin'), async (req, res, next) => {
 
 router.post('/business',authJWTMiddleware('admin'), async (req, res, next) => {
   try {
-    const {name, products} = req.body
-    const { file } = req
+    const {body:{name, products}} = req
+    const { file:{image} } = req
     console.log("name",name)
     console.log("products",products)
-    console.log("file",file)
+    console.log("file",image)
     const business = await create({
       name, 
       products,

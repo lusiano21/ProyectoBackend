@@ -2,6 +2,7 @@ import BusinessModel from '../models/business.js'
 import BusinesDTO from '../dto/Business.js'
 export const createBusiness = (business) => {
   const businesDto = new BusinesDTO(business)
+  console.log(businesDto)
   return BusinessModel.create(businesDto)
 }
 

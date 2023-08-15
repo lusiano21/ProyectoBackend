@@ -10,21 +10,21 @@
     <form action="/api/sessions/business" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nameOfTheRestaurant" class="form-label">Nombre del Restaurante</label>
-            <input type="text" class="form-control" id="nameOfTheRestaurant" aria-describedby="nameHelp">
+            <input type="text" name="email" class="form-control" id="nameOfTheRestaurant" aria-describedby="nameHelp">
             <div id="nameHelp" class="form-text">Elije el nombre del Resturante que quieres agregar a nuestra sitio</div>
         </div>
         <div>
             <label class="form-label">Menú:</label>
             <div id="idHelp" class="form-text">Elija el numero de id del menu</div>
-            <input type="number" id="id" class="form-control" aria-describedby="idHelp">
+            <input type="number" name="id" id="id" class="form-control" aria-describedby="idHelp">
             <div id="menuHelp" class="form-text">Elija el platillo para este menú</div>
-            <input type="text" id="menu" class="form-control" aria-describedby="menuHelp">
+            <input type="text" name="menu" id="menu" class="form-control" aria-describedby="menuHelp">
             <div id="priceHelp" class="form-text">Elija el precio para este menú</div>
-            <input type="number" id="price" class="form-control" aria-describedby="priceHelp">
+            <input type="number" name="price" id="price" class="form-control" aria-describedby="priceHelp">
         </div>
         <div class="mb-3">
             <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" name="image" type="file" id="image">
           </div>
         <button class="btn btn-primary" type="submit">enviar</button>
     </form>

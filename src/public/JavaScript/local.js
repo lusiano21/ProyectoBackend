@@ -26,9 +26,10 @@
         let price_product = document.createElement("p");
         price_product.className = "card-text"
         price_product.innerHTML=`Precio: $${product.price}`;
-        card.append(menu);
-        card.append(name_product);
-        card.append(price_product)
+        cardBody.append(menu);
+        cardBody.append(name_product);
+        cardBody.append(price_product);
+        card.append(cardBody);
       }
       business.append(businessName)
       business.append(card)

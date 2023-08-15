@@ -31,7 +31,7 @@ router.post('/business',authJWTMiddleware('admin'), async (req, res, next) => {
       products,
       image:`${process.env.NODE_HOST}static/img/${file.originalname}`
     })
-
+    console.log('Resultado final',business)
     res.status(201).json(business)
   } catch (error) {
     next(error)

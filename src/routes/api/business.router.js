@@ -20,7 +20,7 @@ router.get('/business', authJWTMiddleware('admin'), async (req, res, next) => {
   }
 })
 
-router.post('/business',uploader.single('avatar'),authJWTMiddleware('admin'), async (req, res, next) => {
+router.post('/business',uploader.single('image'),authJWTMiddleware('admin'), async (req, res, next) => {
   try {
     const {name, id, menu, price} = req.body
     const { file } = req

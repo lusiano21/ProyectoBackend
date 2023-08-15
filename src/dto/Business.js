@@ -5,7 +5,7 @@ export default class BusinesDTO {
       this.products = [
         {
             id : business.id,
-            name: business.menu,
+            menu: business.menu,
             price: business.price
         }
       ]

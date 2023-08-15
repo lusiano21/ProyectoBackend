@@ -16,7 +16,7 @@
       <img src="${element.image}" class="card-img-top" alt="imgManu">`
       for(const product of element.products){
         let cardBody = document.createElement("div")
-        cardBody.className("card-body")
+        cardBody.className ="card-body"
         let menuId = document.createElement("h5");
         menuId.className = "card-title" 
         menuId.innerHTML= `Menu: ${product.id}`;

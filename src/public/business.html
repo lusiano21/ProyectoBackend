@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Business</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./logo.jpg">
+    <title>Rappiplay: Business</title>
 </head>
 <body>
-    <form action="/api/sessions/business" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="nameOfTheRestaurant" class="form-label">Nombre del Restaurante</label>
-            <input type="text" name="name" class="form-control" id="nameOfTheRestaurant" aria-describedby="nameHelp">
-            <div id="nameHelp" class="form-text">Elije el nombre del Resturante que quieres agregar a nuestra sitio</div>
-        </div>
-        <div>
-            <label class="form-label">Menú:</label>
-            <div id="idHelp" class="form-text">Elija el numero de id del menu</div>
-            <input type="number" name="id" id="id" class="form-control" aria-describedby="idHelp">
-            <div id="menuHelp" class="form-text">Elija el platillo para este menú</div>
-            <input type="text" name="menu" id="menu" class="form-control" aria-describedby="menuHelp">
-            <div id="priceHelp" class="form-text">Elija el precio para este menú</div>
-            <input type="number" name="price" id="price" class="form-control" aria-describedby="priceHelp">
-        </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" name="image" type="file" id="image">
-          </div>
-        <button class="btn btn-primary" type="submit">enviar</button>
-    </form>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html"><img src="./logo.jpg" alt="logo" style="height: 4rem;"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                    <div class="navbar-nav justify-content-around" style="width: 100%;">
+                    <a class="nav-link active" aria-current="page" href="./login.html">Rappiplay</a>
+                    <a class="nav-link" href="#">Información</a>
+                    <a class="nav-link" href="./locales.html">Locales</a>
+                    <a class="nav-link disabled">Contactos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form action="/api/sessions/business" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="nameOfTheRestaurant" class="form-label">Nombre del Restaurante</label>
+                <input type="text" name="name" class="form-control" id="nameOfTheRestaurant" aria-describedby="nameHelp">
+                <div id="nameHelp" class="form-text">Elije el nombre del Resturante que quieres agregar a nuestra sitio</div>
+            </div>
+            <div>
+                <label class="form-label">Menú:</label>
+                <div id="idHelp" class="form-text">Elija el numero de id del menú</div>
+                <input type="number" name="id" id="id" class="form-control" aria-describedby="idHelp">
+                <div id="menuHelp" class="form-text">Elija el platillo para este menú</div>
+                <input type="text" name="menu" id="menu" class="form-control" aria-describedby="menuHelp">
+                <div id="priceHelp" class="form-text">Elija el precio para este menú</div>
+                <input type="number" name="price" id="price" class="form-control" aria-describedby="priceHelp">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Elija una imagen para el Restaurante</label>
+                <input class="form-control" name="image" type="file" id="image">
+              </div>
+            <button class="btn btn-primary" type="submit">enviar</button>
+        </form>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

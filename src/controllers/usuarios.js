@@ -45,7 +45,7 @@ export const create = async (req, res, next ) => {
       rol,
       password: createHash(password),
     })
-    res.status(201).json(user)
+    res.status(201).json({success:true, user})
     
   } catch (error) {
     next(error)

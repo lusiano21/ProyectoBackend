@@ -15,6 +15,8 @@ Pagina privada donde pode ver tus datos y podes chatear con otros usuarios
 *https://proyectobackend-production-1746.up.railway.app/static/locales.html
 Pagina para ver todos los business disponibles y sus productos 
 
+*https://proyectobackend-production-1746.up.railway.app/static/business.html
+Pagina para crear los business 
 #### Usuarios:
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/user

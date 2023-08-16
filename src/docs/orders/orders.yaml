@@ -101,13 +101,13 @@ components:
         products:
           id:
            type: number
-           description: identifacador del menu del Business
+           description: Identifacador del menu del Business
           quantity:
            type: number
-           description: cantidad comprada del menu 
+           description: Cantidad comprada del menu 
           price:
            type: number
-           description: precio del menu
+           description: Precio del menu
         total: 
          type: number
          description: Precio total

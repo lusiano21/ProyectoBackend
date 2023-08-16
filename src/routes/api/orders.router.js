@@ -46,7 +46,7 @@ router.put('/order/:id/resolve',authJWTMiddleware("admin"), async (req, res, nex
     next(error)
   }
 })
-router.delete('/order/:id', authJWTMiddleware(['admin']), async (req,res,next) => {
+router.delete('/order/:id', authJWTMiddleware('admin'), async (req,res,next) => {
 try {
   const order = await removeById(req.params.id)
   res.status(200).json(order)

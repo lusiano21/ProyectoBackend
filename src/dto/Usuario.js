@@ -4,6 +4,7 @@ export default class UsuarioDTO {
       this.avatar = usuario.avatar
       this.edad = usuario.edad
       this.phone = usuario.phone
+      this.rol = usuario.rol
       this.dni = usuario.dni
       this.email = usuario.email
       this.password = usuario.password

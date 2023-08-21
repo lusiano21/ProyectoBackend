@@ -1,6 +1,6 @@
 class CommunsUtil {
     static buidResponse(data) {
-    let link = "http://localhost:8080/"
+    let link = "https://proyectobackend-production-1746.up.railway.app/"
       let sortQueryParam = ''
       if (data.sort) {
         sortQueryParam = `&sort=${data.sort}`
@@ -17,7 +17,7 @@ class CommunsUtil {
         prevLink: !data.hasPrevPage ? null : `${link}api?limit=${data.limit}&page=${data.prevPage}${sortQueryParam}`,
         nextLink: !data.hasNextPage ? null : `${link}api?limit=${data.limit}&page=${data.nextPage}${sortQueryParam}`,
         sort: data.sort,
-        sortLink: `http://localhost:8080/api?page=${data.page}&limit=${data.limit}&sort=${data.sort === 'asc' ? 'desc' : 'asc'}`
+        sortLink: `https://proyectobackend-production-1746.up.railway.app/api?page=${data.page}&limit=${data.limit}&sort=${data.sort === 'asc' ? 'desc' : 'asc'}`
       }
     }
   }

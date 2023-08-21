@@ -14,9 +14,6 @@ router.get('/', async(req, res)=> {
     options.sort = { grade: sort }
   }
   const result = await BusinessModel.paginate({}, options)
-  
-  console.log( 'Result',result)
-  console.log('Comunity' ,CommunsUtil.buidResponse({ ...result, sort }))
   res.render('products', CommunsUtil.buidResponse({ ...result, sort }))
   //res.status(200).send(CommunsUtil.buidResponse({ ...result, sort }))
 });

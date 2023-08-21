@@ -1,5 +1,5 @@
 import express  from "express";
-import BusinessModel from "../../models/business.js";
+import BusinessModel from "../../models/products.js";
 import CommunsUtil from "../../utils/utils.views.js";
 //import passport from "passport";
 const router = express.Router();
@@ -16,8 +16,8 @@ router.get('/', async(req, res)=> {
   const result = await BusinessModel.paginate({}, options)
   
   console.log( 'Result',result)
-  console.log( 'Comunity' ,CommunsUtil.buidResponse({ ...result, sort }))
-  res.render('home', CommunsUtil.buidResponse({ ...result, sort }))
+  console.log('Comunity' ,CommunsUtil.buidResponse({ ...result, sort }))
+  res.render('products', CommunsUtil.buidResponse({ ...result, sort }))
   //res.status(200).send(CommunsUtil.buidResponse({ ...result, sort }))
 });
 

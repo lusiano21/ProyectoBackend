@@ -9,8 +9,8 @@ import {
   getUserById,
 } from '../dao/user.js'
 import {
-  getBusinessById,
-} from '../dao/business.js'
+  getProductsById,
+} from '../dao/products.js'
 //import twilioService from '../servicios/twilio.service.js'
 import emailService from '../servicios/email.service.js'
 import { NotFoundException } from '../utils/exception.js'
@@ -26,19 +26,19 @@ export const get = async (query = {}) => {
 export const create = async (body) => {
   let {
     user: userId,
-    business: businessId,
+    products: productsId,
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('Order not found')
   }
-  const business = await getBusinessById(businessId)
-  if (!business) {
+  const products = await getProductsById(productsId)
+  if (!products) {
     throw new NotFoundException('Order not found')
   }
-const products = productsRequest.reduce((result, item)=> {
-    const product = business.products.find((product) => product.id == item.product)
+  const trolley = trolleyRequest.reduce((result, item)=> {
+    const product = trolley.products.find((product) => product.id == item.product)
     if (product) {
       result.push({
         id: item.product,
@@ -48,7 +48,7 @@ const products = productsRequest.reduce((result, item)=> {
     }
     return result
   }, [])
-  const total = products.reduce((acc, product) => {
+  const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
  

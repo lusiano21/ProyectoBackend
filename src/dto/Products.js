@@ -1,4 +1,4 @@
-export default class BusinesDTO {
+export default class ProductsDTO {
     constructor(business){
       this.name = business.name
       this.image = business.image

@@ -5,11 +5,11 @@
     <img src="{{this.image}}" class="card-img-top" alt="restaurante">
     <div class="card-body">
       <h5 class="card-title">{{this.name}}</h5>
-      {{#for product of products}}
-      <p class="card-text">{{this.product.id}}</p>
-      <p class="card-text">{{this.product.menu}}</p>
-      <p class="card-text">{{this.product.price}}</p>
-      {{/for}}
+      {{#each products}}
+      <p class="card-text">{{this.id}}</p>
+      <p class="card-text">{{this.menu}}</p>
+      <p class="card-text">{{this.price}}</p>
+      {{/each}}
       <a href="#" class="btn btn-primary">Comprar</a>
     </div>
   </div>

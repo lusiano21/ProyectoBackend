@@ -6,9 +6,9 @@
     <div class="card-body">
       <h5 class="card-title">{{this.name}}</h5>
       {{#for product of products}}
-      <p class="card-text">{{{this.product.id}}}</p>
-      <p class="card-text">{{{this.product.menu}}}</p>
-      <p class="card-text">{{{this.product.price}}}</p>
+      <p class="card-text">{{this.product.id}}</p>
+      <p class="card-text">{{this.product.menu}}</p>
+      <p class="card-text">{{this.product.price}}</p>
       {{/for}}
       <a href="#" class="btn btn-primary">Comprar</a>
     </div>

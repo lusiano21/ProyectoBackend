@@ -1,5 +1,6 @@
 <h1>Productos</h1>
-
+<section>
+<article class="d-flex justify-content-around">
 {{#each payload}}
   <div class="card" style="width: 18rem;">
     <img src="{{this.image}}" class="card-img-top" alt="restaurante">
@@ -13,7 +14,9 @@
       <a href="#" class="btn btn-primary">Comprar</a>
     </div>
   </div>
-  {{/each}}
+{{/each}}
+</article>
+</section>
 
 <p>Página actual: {{page}}</p>
 {{#if prevLink}}

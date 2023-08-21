@@ -1,25 +1,17 @@
-<h1>Estudiantes</h1>
+<h1>Productos</h1>
 
-<table id="main" role="grid">
-  <tr>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Correo</th>
-    <th>Genero</th>
-    <th><a href="{{sortLink}}">Calificación</a></th>
-    <th>Grupo</th>
-  </tr>
-  {{#each payload}}
-    <tr>
-      <td>{{this.first_name}}</td>
-      <td>{{this.last_name}}</td>
-      <td>{{this.email}}</td>
-      <td>{{this.gender}}</td>
-      <td>{{this.grade}}</td>
-      <td>{{this.group}}</td>
-    </tr>
+{{#each payload}}
+  <div class="card" style="width: 18rem;">
+    <img src="{{this.image}}" class="card-img-top" alt="restaurante">
+    <div class="card-body">
+      <h5 class="card-title">{{this.name}}</h5>
+      <p class="card-text">{{this.id}}</p>
+      <p class="card-text">{{this.menu}}</p>
+      <p class="card-text">{{this.price}}</p>
+      <a href="#" class="btn btn-primary">Comprar</a>
+    </div>
+  </div>
   {{/each}}
-</table>
 
 <p>Página actual: {{page}}</p>
 {{#if prevLink}}

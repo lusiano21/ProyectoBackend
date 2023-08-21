@@ -11,7 +11,8 @@ import {
 import {
   getBusinessById,
 } from '../dao/business.js'
-import twilioService from '../servicios/twilio.service.js'
+//import twilioService from '../servicios/twilio.service.js'
+import emailService from '../servicios/email.service.js'
 import { NotFoundException } from '../utils/exception.js'
 
 export const get = async (query = {}) => {
@@ -58,7 +59,19 @@ const products = productsRequest.reduce((result, item)=> {
     total,
   }
   const order = await createOrder(newOrder)
-  const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra `)
+  //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
+  const result = await emailService.sendEmail(
+    'lucianobk02@gmail.com',
+    'Hola. Cómo estás?',
+    `
+    <div>
+      <h1>Hola ${user.fullname}.</h1>
+      <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
+      <p>Muchas gracias por tu orden.</p>
+    </div>
+    `,
+  )
+  console.log(result)
   return {
     status: 'success',
     payload: order,

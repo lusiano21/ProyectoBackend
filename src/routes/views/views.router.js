@@ -17,8 +17,8 @@ router.get('/', async(req, res)=> {
   
   console.log( 'Result',result)
   console.log( 'Comunity' ,CommunsUtil.buidResponse({ ...result, sort }))
-  //res.render('datos', CommunsUtil.buidResponse({ ...result, sort }))
-  res.status(200).send(CommunsUtil.buidResponse({ ...result, sort }))
+  res.render('home', CommunsUtil.buidResponse({ ...result, sort }))
+  //res.status(200).send(CommunsUtil.buidResponse({ ...result, sort }))
 });
 
 

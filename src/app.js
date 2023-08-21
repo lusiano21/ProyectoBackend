@@ -30,6 +30,9 @@ const swaggerOptions = {
   apis:[path.join(__dirname, 'docs','**','*.yaml')],
 };
 app.use('/static', express.static(path.join(__dirname, './public')))
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
 const specs = swaggerJsDoc(swaggerOptions);
 
 initPassport()

@@ -7,7 +7,9 @@ import {
 } from '../dao/order.js'
 import {
   getUserById,
+  updateUserById
 } from '../dao/user.js'
+import UsuarioModel from '../models/usuario.js'
 import {
   getProductsById,
 } from '../dao/products.js'
@@ -30,12 +32,10 @@ export const create = async (body) => {
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
-  console.log('Paso 1 verificar user',user)
   if (!user) {
     throw new NotFoundException('Order not found')
   }
   const products = await getProductsById(productId)
-  console.log('Paso 2 verificar products',products)
   if (!products) {
     throw new NotFoundException('Order not found')
   }
@@ -53,7 +53,6 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
-  console.log('Paso 3 verificar user',trolley)
   const newOrder = {
     user: user.id,
     product: products.id,
@@ -62,7 +61,11 @@ export const create = async (body) => {
     status:'completed'
   }
   const order = await createOrder(newOrder)
-
+  user.orders.push(`${order.id}`)
+  await updateUserById(`${user.id}`, user)
+  console.log('user id',`${user.id}`)
+  const usuario = await UsuarioModel.find({_id: `'${user.id}'`})
+  console.log('usuario',JSON.stringify(usuario, null, 2))
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
   const result = await emailService.sendEmail(
     `${user.email}`,

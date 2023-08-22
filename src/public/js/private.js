@@ -26,7 +26,7 @@
         }
       } else {
         alert('You are not authorized to view this page. Redirecting to login page...');
-        window.location.href = '/static/login.html';
+        window.location.href = '/static';
       }
     });
   

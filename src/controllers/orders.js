@@ -64,7 +64,7 @@ export const create = async (body) => {
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
   console.log('user id',`${user.id}`)
-  const usuario = await UsuarioModel.find({_id: `'${user.id}'`})
+  const usuario = await UsuarioModel.find({_id: `${user.id}`})
   console.log('usuario',JSON.stringify(usuario, null, 2))
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
   const result = await emailService.sendEmail(

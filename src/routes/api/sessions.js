@@ -51,7 +51,7 @@ router.post('/reset', async (req, res) => {
 })
 router.post('/new-password', async (req,res)=>{
   const { email, password, password_confir } = req.body
-  if(password === password_confir){
+  if(password !== password_confir){
     return res.render('new-password', { error: 'La contraseña no coinciden' })
   }
   const user = await UsuarioModel.findOne({ email })

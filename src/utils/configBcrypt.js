@@ -10,12 +10,12 @@ import Exception from './exception.js'
 export const tokenGenerator = (user) => {
   const payload = {
     id: user._id,
-    name: user.nombre,
-    last_name: user.apellido,
-    age: user.edad,
+    nombre: user.nombre,
+    apellido: user.apellido,
+    edad: user.edad,
     email: user.email,
     rol: user.rol,
-    DNI: user.dni
+    dni: user.dni
   }
   const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
   return token

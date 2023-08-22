@@ -1,6 +1,7 @@
 import express  from "express";
 import BusinessModel from "../../models/products.js";
 import CommunsUtil from "../../utils/utils.views.js";
+import { isValidToken } from "../../utils/configBcrypt.js";
 //import passport from "passport";
 const router = express.Router();
 
@@ -27,7 +28,8 @@ router.get('/reset', async(req, res)=> {
 });
 router.get('/new-password', async (req, res) => {
   if(req.query.token){
-    res.render('new-password').send( `
+    console.log(token)
+    res.send( `
     <div>
       <h1>Escriba su nueva contraseña 🛅</h1>
       <form action="/api/sessions/new-password" method="POST">

@@ -35,7 +35,7 @@ router.post('/reset', async (req, res) => {
     if (!user) {
       return res.render('reset', { error: 'Email no existe' })
     }else{
-      res.render('reset', { error: 'Te hemos enviado un correo con el link para cambiar tu contraseña' })
+      alert('Ya te hemos enviado un correo')
       await emailService.sendEmail(
         `${user.email}`,
         'Cambio de contraseña',
@@ -50,6 +50,8 @@ router.post('/reset', async (req, res) => {
     }
 })
 router.post('/new-password', async (req,res)=>{
+  const { email, password} = req.body
+  console.log('email, password',email, password)
   user.password = createHash(password)
   await UsuarioModel.updateOne({ email }, user) 
   res.redirect('/static/login.html')

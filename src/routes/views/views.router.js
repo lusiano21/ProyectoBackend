@@ -17,10 +17,10 @@ router.get('/', async(req, res)=> {
   res.render('products', CommunsUtil.buidResponse({ ...result, sort }))
 });
 router.get('/create', async(req, res)=> {
-  res.render('create')
+  res.render('create',{style:'index.css'})
 });
 router.get('/register', async(req, res)=> {
-  res.render('register')
+  res.render('register',{style:'index.css'})
 });
 //router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }))
 export default router;

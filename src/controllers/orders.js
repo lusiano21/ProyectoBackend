@@ -30,10 +30,12 @@ export const create = async (body) => {
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
+  console.log('Paso 1 verificar user',user)
   if (!user) {
     throw new NotFoundException('Order not found')
   }
   const products = await getProductsById(productId)
+  console.log('Paso 2 verificar products',products)
   if (!products) {
     throw new NotFoundException('Order not found')
   }
@@ -51,7 +53,7 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
- 
+  console.log('Paso 3 verificar user',trolley)
   const newOrder = {
     user: user.id,
     product: products.id,
@@ -59,6 +61,7 @@ export const create = async (body) => {
     total,
   }
   const order = await createOrder(newOrder)
+  
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
   const result = await emailService.sendEmail(
     `${user.email}`,

@@ -4,10 +4,10 @@
     <p>{{error}}</p>
     {{/if}}
     <form action="/api/sessions/reset" method="POST">
-        <input type="text" name="email" placeholder="Correo">
-        <!--<input type="password"  name="password" placeholder="Contraseña">-->
-        <p>Ir a <a href="/static/index.html">Iniciar Sección</a></p>
+        <input type="email" name="email" placeholder="Correo">
+        <!--<input type="password"  name="password" placeholder="Contraseña">-->      
         <button type="submit" class="btn btn-outline-primary">Enviar</button>
     </form>
+    <p>Ir a <a href="/static/index.html">Iniciar Sección</a></p>
 </article>
 <script src="/static/js/reset.js"></script>

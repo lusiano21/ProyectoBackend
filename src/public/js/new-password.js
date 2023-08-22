@@ -26,8 +26,7 @@
         } else {
           alert(data.message);
         }
-      }
-      )
+      })
       .catch((error) => {
         console.error('Error:', error);
       });

@@ -60,7 +60,7 @@ router.post('/new-password', async (req,res)=>{
   }
   user.password = createHash(password)
   await UsuarioModel.updateOne({ email }, user) 
-  res.redirect('/static/login.html')
+  res.status(200).send({success:true})
 })
 /*router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
     req.session.user = req.user

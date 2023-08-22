@@ -17,6 +17,18 @@
         },
         body: JSON.stringify(data),
       })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          window.location.href = '/static/index.html'
+        } else {
+          alert(data.message);
+        }
+      }
+      )
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     });
   
   })();

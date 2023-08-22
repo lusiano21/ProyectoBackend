@@ -59,6 +59,7 @@ export const create = async (body) => {
     product: products.id,
     products: trolley,
     total,
+    status:'completed'
   }
   const order = await createOrder(newOrder)
 

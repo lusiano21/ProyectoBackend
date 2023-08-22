@@ -40,7 +40,7 @@ export const create = async (body) => {
     throw new NotFoundException('Order not found')
   }
   const trolley = productsRequest.reduce((result, item)=> {
-    const product = trolley.products.find((product) => product.id == item.product)
+    const product = products.trolley.find((product) => product.id == item.product)
     if (product) {
       result.push({
         id: item.product,
@@ -61,7 +61,7 @@ export const create = async (body) => {
     total,
   }
   const order = await createOrder(newOrder)
-  
+
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
   const result = await emailService.sendEmail(
     `${user.email}`,

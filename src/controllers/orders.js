@@ -57,7 +57,7 @@ export const create = async (body) => {
   const newOrder = {
     user: user.id,
     product: products.id,
-    products,
+    products: trolley,
     total,
   }
   const order = await createOrder(newOrder)

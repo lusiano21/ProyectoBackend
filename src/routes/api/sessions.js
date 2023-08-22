@@ -35,6 +35,7 @@ router.post('/reset', async (req, res) => {
     if (!user) {
       return res.render('reset', { error: 'Email no existe' })
     }else{
+      res.render('reset', { error: 'Te hemos enviado un correo con el link para cambiar tu contraseña' })
       await emailService.sendEmail(
         `${user.email}`,
         'Cambio de contraseña',
@@ -46,7 +47,6 @@ router.post('/reset', async (req, res) => {
          </div>
         `
       )
-      return res.render('reset', { error: 'Te hemos enviado un correo con el link para cambiar tu contraseña' })
     }
 })
 router.post('/new-password', async (req,res)=>{

@@ -2,14 +2,16 @@
     const formLogin = document.getElementById('form-login');
     const inputEmail = document.getElementById('email').value;
     const inputPassword = document.getElementById('password');
+    const inputPassword2 = document.getElementById('password_confir');
     inputPassword.onchange = () => {};
+    inputPassword2.onchange = () => {};
     formLogin.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = {
         email: inputEmail,
         password: inputPassword.value,
+        password_confir: inputPassword2.value
       };
-      console.log('data',data)
       fetch('/api/sessions/new-password', {
         method: 'POST',
         headers: {

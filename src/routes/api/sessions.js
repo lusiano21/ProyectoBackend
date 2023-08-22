@@ -31,6 +31,7 @@ router.post('/reset', async (req, res) => {
         email,
       }
     } = req
+    console.log('email',email)
     if (!email) {
       return res.render('reset', { error: 'Hubo un problema con el Email' })
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })

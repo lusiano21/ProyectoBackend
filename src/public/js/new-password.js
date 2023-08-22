@@ -6,7 +6,7 @@
     formLogin.addEventListener('submit', async (event) => {
       event.preventDefault();
       const data = {
-        email: inputEmail.value,
+        email: inputEmail,
         password: inputPassword.value,
       };
       console.log('data',data)

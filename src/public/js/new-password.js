@@ -22,9 +22,22 @@
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          Toastify({
+            text: "Cambiaste tu contraseña. Felicidades",
+            className:"info",
+            style: {
+              background: "linear-gradient(to right, #00c1a9, #559f93)",
+            }
+          }).showToast();
           window.location.href = '/static/index.html'
         } else {
-          alert(data.message);
+          Toastify({
+            text:  `${data.message}`,
+            className:"info",
+            style: {
+              background: "linear-gradient(to right, #00c1a9, #559f93)",
+            }
+          }).showToast();
         }
       })
       .catch((error) => {

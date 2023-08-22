@@ -52,11 +52,11 @@ router.post('/reset', async (req, res) => {
 router.post('/new-password', async (req,res)=>{
   const { email, password, password_confir } = req.body
   if(password !== password_confir){
-    res.render('new-password', { error: 'La contraseña no coinciden' })
+    return res.send({message:'La constraseña no coincide'})
   }
   const user = await UsuarioModel.findOne({ email })
   if (!user) {
-    res.render('new-password', { error: 'El usuario ya no existe' })
+    return res.send({message:'El usuario ya no existe'})
   }
   user.password = createHash(password)
   await UsuarioModel.updateOne({ email }, user) 

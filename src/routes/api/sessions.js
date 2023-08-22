@@ -28,12 +28,12 @@ router.post('/register', uploader.single('avatar'), create)
 router.post('/reset', async (req, res) => {
     const { body:{ email } } = req
     if (!email) {
-      return res.render('reset', { error: 'Hubo un problema con el Email' })
+      res.render('reset', { error: 'Hubo un problema con el Email' })
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
     }
     const user = await UsuarioModel.findOne({ email })
     if (!user) {
-      return res.render('reset', { error: 'Email no existe' })
+      res.render('reset', { error: 'Email no existe' })
     }else{
       emailService.sendEmail(
         `${user.email}`,
@@ -52,11 +52,11 @@ router.post('/reset', async (req, res) => {
 router.post('/new-password', async (req,res)=>{
   const { email, password, password_confir } = req.body
   if(password !== password_confir){
-    return res.render('new-password', { error: 'La contraseña no coinciden' })
+    res.render('new-password', { error: 'La contraseña no coinciden' })
   }
   const user = await UsuarioModel.findOne({ email })
   if (!user) {
-    return res.render('new-password', { error: 'El usuario ya no existe' })
+    res.render('new-password', { error: 'El usuario ya no existe' })
   }
   user.password = createHash(password)
   await UsuarioModel.updateOne({ email }, user) 

@@ -35,7 +35,7 @@ export const isValidToken = (token) => {
         return resolve(false)
       }
       console.log('payload', payload)
-      return resolve(true)
+      return resolve(payload)
     })
     return token
   })

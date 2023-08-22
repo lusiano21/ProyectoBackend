@@ -1,8 +1,8 @@
 <h1>Productos</h1>
 <section>
-<article class="d-flex justify-content-around">
+<article class="d-flex justify-content-around align-items-center flex-wrap">
 {{#each payload}}
-  <div class="card d-flex flex-column align-items-center flex-wrap" style="width: 18rem;">
+  <div class="card" style="width: 18rem;">
     <img src="{{this.image}}" class="card-img-top" alt="restaurante">
     <div class="card-body">
       <h5 class="card-title">{{this.name}}</h5>

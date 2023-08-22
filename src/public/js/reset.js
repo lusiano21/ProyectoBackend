@@ -18,13 +18,21 @@
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          let mailbox = document.createElement("h4")
-          mailbox.innerText =  "Ya te enviamos un correo"
-          notification.append(mailbox)
+          Toastify({
+            text: "Te enviamos un correo para cambiar la contraseña",
+            className:"info",
+            style: {
+              background: "linear-gradient(to right, #00c1a9, #559f93)",
+            }
+          }).showToast();
         } else {
-          let mailbox = document.createElement("h4")
-          mailbox.innerText =`${message}`
-          notification.append(mailbox)
+          Toastify({
+            text:  `${data.message}`,
+            className:"info",
+            style: {
+              background: "linear-gradient(to right, #00c1a9, #559f93)",
+            }
+          }).showToast();
         }
       })
       

@@ -26,7 +26,23 @@ router.get('/reset', async(req, res)=> {
   res.render('reset')
 });
 router.get('/new-password', async (req, res) => {
-  res.render('new-password')
+  if(req.query.token){
+    res.render('new-password').send( `
+    <div>
+      <h1>Escriba su nueva contraseña 🛅</h1>
+      <form action="/api/sessions/new-password" method="POST">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Contraseña">
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+    `)
+  }else{
+    <div>
+    <h1>No puedes estar acá 😥</h1>
+</div>
+  }
+  
 })
 //router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }))
 export default router;

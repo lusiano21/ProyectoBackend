@@ -3,19 +3,19 @@
 Mi proyecto trata de compra en comida en restaurantes 
 ### Rutas 
 #### Vistas:
-*https://proyectobackend-production-1746.up.railway.app/static/
+*https://proyectobackend-production-1746.up.railway.app/register/
 Pagina principal para registrarse
 
-*https://proyectobackend-production-1746.up.railway.app/static/login.html
+*https://proyectobackend-production-1746.up.railway.app/static/
 Pagina para hacer login con la cuenta que creaste
 
 *https://proyectobackend-production-1746.up.railway.app/static/me.html
 Pagina privada donde pode ver tus datos y podes chatear con otros usuarios 
 
-*https://proyectobackend-production-1746.up.railway.app/static/locales.html
+*https://proyectobackend-production-1746.up.railway.app/products
 Pagina para ver todos los business disponibles y sus productos 
 
-*https://proyectobackend-production-1746.up.railway.app/static/business.html
+*https://proyectobackend-production-1746.up.railway.app/create
 Pagina para crear los business 
 #### Usuarios:
 
@@ -63,11 +63,11 @@ status:completed o canceled
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id
 Metodo delelte: Puedes borrar una orden solo si eres de rol "admin"
 
-#### Business:
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/business
+#### Products:
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/products
 Metodo get: Puede traer todas los business, solo lo puede hacer con el rol "admin"
 
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/business
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/products
 Metodo post: Puede crear los business, con el formato;
 name:(Nombre del negocio)
 products:[
@@ -76,7 +76,7 @@ products:[
     price:(precio del producto)
 ]
 
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/business/:id
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/products/:id
 Metodo get: Puede traer un business en especifico, solo lo puede hacer con el rol "admin"
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/business/:id

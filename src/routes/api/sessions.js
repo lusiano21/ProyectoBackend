@@ -28,14 +28,14 @@ router.post('/register', uploader.single('avatar'), create)
 router.post('/reset', async (req, res) => {
     const { body:{ email } } = req
     if (!email) {
-      return res.status(400).send({message:'Hubo un problema con el email'})
+      return res.send({message:'Hubo un problema con el email'})
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
     }
     const user = await UsuarioModel.findOne({ email })
     if (!user) {
-      return res.render('reset', { error: 'Email no existe' })
+      return res.send({message:'No existe ningun usuario con ese email'})
     }else{
-      emailService.sendEmail(
+       await emailService.sendEmail(
         `${user.email}`,
         'Cambio de contraseña',
         `
@@ -46,6 +46,7 @@ router.post('/reset', async (req, res) => {
          </div>
         `
       )
+      return res.send({success:true})
     }
 })
 router.post('/new-password', async (req,res)=>{

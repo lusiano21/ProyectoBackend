@@ -30,7 +30,8 @@ router.get('/new-password', async (req, res) => {
   const {query} = req
   if(await isValidToken(query.token)){
     const datos = isValidToken(query.token)
-    res.render('new-password', datos.payload)
+    console.log(datos)
+    res.render('new-password', datos)
   }else{
     res.send(
       `<div>

@@ -26,8 +26,8 @@ router.post('/login', async (req,res) => {
 router.post('/register', uploader.single('avatar'), create)
 
 router.post('/reset', async (req, res) => {
-    const { email } = req.body
-    console.log('body',body)
+    const { body: {email} } = req
+    console.log('body', body)
     console.log('email',email)
     if (!email) {
       return res.render('reset', { error: 'Hubo un problema con el Email' })

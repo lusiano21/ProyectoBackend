@@ -37,7 +37,7 @@ export const create = async (body) => {
   if (!products) {
     throw new NotFoundException('Order not found')
   }
-  const trolley = trolleyRequest.reduce((result, item)=> {
+  const trolley = productsRequest.reduce((result, item)=> {
     const product = trolley.products.find((product) => product.id == item.product)
     if (product) {
       result.push({

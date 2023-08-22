@@ -4,6 +4,7 @@ import { uploader } from '../../utils/multer.js';
 import { Router } from 'express'
 import { create } from '../../controllers/usuarios.js';
 import { tokenGenerator, createHash, validatePassword} from '../../utils/configBcrypt.js';
+import emailService from '../../servicios/email.service.js';
 
 const router = Router()
 
@@ -28,29 +29,37 @@ router.post('/reset', async (req, res) => {
     const {
       body: {
         email,
-        password,
       }
     } = req
-    if (
-      !email ||
-      !password
-    ) {
-      alert('El usuario o contraseña son incorrectas')
+    if (!email) {
+      alert('Hubo un problema con encontrar el usuario')
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
     }
     const user = await UsuarioModel.findOne({ email })
     if (!user) {
-      //return res.render('reset', { error: 'Email no existe.' })
-      alert(' El usuario o contraseña son incorrectas')
+      return res.render('reset', { error: 'Email no existe.' })
+    }else{
+      await emailService.sendEmail(
+        `${user.email}`,
+        'Cambio de contraseña',
+        `
+        <div>
+          <h1>Hola ${user.fullname}.</h1>
+          <p>Nos comunicamos contigo por que quieres cambiar de contraseña.</p>
+          <p>Para cambiar la contraseña ingresa <a href="https://proyectobackend-production-1746.up.railway.app/new-password?token=${Date.now()}">aquí</a></p>
+         </div>
+        `
+      )
     }
     user.password = createHash(password)
     await UsuarioModel.updateOne({ email }, user) 
-    res.redirect('/static/login')
+    res.redirect('/static/login.html')
 })
-router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+
+/*router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
     req.session.user = req.user
     res.redirect('/profile')
-  });
+});*/
 router.post('/sign-out', (req, res) => {
     res.clearCookie('token').status(200).json({ success: true })
   })

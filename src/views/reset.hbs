@@ -1,10 +1,13 @@
 <article>
     <h1>Resetear Contraseña</h1>
+    {{#if error }}
+    <p>{{error}}</p>
+    {{/if}}
     <form action="/api/sessions/reset" method="POST">
         <input type="text" name="email" placeholder="Correo">
-        <input type="password"  name="password" placeholder="Contraseña">
+        <!--<input type="password"  name="password" placeholder="Contraseña">-->
         <p>Ir a <a href="/static/index.html">Iniciar Sección</a></p>
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn btn-outline-primary">Enviar</button>
     </form>
 </article>
 <script src="/static/js/reset.js"></script>

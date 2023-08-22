@@ -26,14 +26,14 @@ export const get = async (query = {}) => {
 export const create = async (body) => {
   let {
     user: userId,
-    products: productsId,
+    product: productId,
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('Order not found')
   }
-  const products = await getProductsById(productsId)
+  const products = await getProductsById(productId)
   if (!products) {
     throw new NotFoundException('Order not found')
   }
@@ -61,8 +61,8 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
   const result = await emailService.sendEmail(
-    'lucianobk02@gmail.com',
-    'Hola. Cómo estás?',
+    `${user.email}`,
+    'Compra en Rappiplay',
     `
     <div>
       <h1>Hola ${user.fullname}.</h1>
@@ -71,7 +71,7 @@ export const create = async (body) => {
     </div>
     `,
   )
-  console.log(result)
+  console.log('order para ver el resultado',order)
   return {
     status: 'success',
     payload: order,

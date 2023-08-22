@@ -27,8 +27,8 @@ router.get('/reset', async(req, res)=> {
   res.render('reset')
 });
 router.get('/new-password', async (req, res) => {
-  if(req.query.token){
-    console.log(token)
+  console.log(req.query.token)
+  if(await isValidToken((req.query.token).authorization)){
     res.send( `
     <div>
       <h1>Escriba su nueva contraseña 🛅</h1>

@@ -15,9 +15,12 @@ router.get('/', async(req, res)=> {
   }
   const result = await BusinessModel.paginate({}, options)
   res.render('products', CommunsUtil.buidResponse({ ...result, sort }))
-  //res.status(200).send(CommunsUtil.buidResponse({ ...result, sort }))
 });
-
-
+router.get('/create', async(req, res)=> {
+  res.render('create')
+});
+router.get('/register', async(req, res)=> {
+  res.render('register')
+});
 //router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }))
 export default router;

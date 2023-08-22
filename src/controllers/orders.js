@@ -54,7 +54,7 @@ export const create = async (body) => {
  
   const newOrder = {
     user: user.id,
-    business: business.id,
+    product: products.id,
     products,
     total,
   }

@@ -9,7 +9,7 @@
         email: inputEmail.value,
         password: inputPassword.value,
       };
-      console.log(data)
+      console.log('data',data)
       fetch('/api/sessions/new-password', {
         method: 'POST',
         headers: {

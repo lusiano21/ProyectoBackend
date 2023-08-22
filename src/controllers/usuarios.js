@@ -45,7 +45,7 @@ export const create = async (req, res, next ) => {
       rol,
       password: createHash(password),
     })
-    res.status(201).redirect('/')
+    res.status(201).redirect('/static/index.html')
   } catch (error){
     next(error)
   }

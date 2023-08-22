@@ -22,5 +22,8 @@ router.get('/create', async(req, res)=> {
 router.get('/register', async(req, res)=> {
   res.render('register',{style:'index.css'})
 });
+router.get('/reset', async(req, res)=> {
+  res.render('reset',{style:'index.css'})
+});
 //router.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email' ] }))
 export default router;

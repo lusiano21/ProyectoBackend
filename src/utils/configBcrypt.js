@@ -29,9 +29,9 @@ export const tokenGeneratorforReset = (user) => {
 }
 export const isValidToken = (token) => {
   return new Promise((resolve) => {
-    jsonwebtoken.verify(token, JWT_SECRET, (error, payload) => {
-      if (error) {
-        console.log('err', error)
+    jsonwebtoken.verify(token, JWT_SECRET, (err, payload) => {
+      if (err) {
+        console.log('err', err)
         return resolve(false)
       }
       console.log('payload', payload)

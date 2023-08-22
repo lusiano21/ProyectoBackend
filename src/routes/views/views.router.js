@@ -31,8 +31,8 @@ router.get('/new-password', async (req, res) => {
   const {query}=req
   console.log("query",query)
   console.log("query.token",query.token)
-  console.log("IsValidToken", await isValidToken(query.authorization))
-  if(await isValidToken(query.authorization)){
+  console.log("IsValidToken", await isValidToken(query))
+  if(isValidToken(query.authorization)){
     res.send( `
     <div>
       <h1>Escriba su nueva contraseña 🛅</h1>

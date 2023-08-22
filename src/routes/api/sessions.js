@@ -28,7 +28,7 @@ router.post('/register', uploader.single('avatar'), create)
 router.post('/reset', async (req, res) => {
     const { body:{ email } } = req
     if (!email) {
-      return res.render('reset', { error: 'Hubo un problema con el Email' })
+      return res.status(400).send({message:'Hubo un problema con el email'})
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
     }
     const user = await UsuarioModel.findOne({ email })

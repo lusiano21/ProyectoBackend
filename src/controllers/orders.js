@@ -40,7 +40,7 @@ export const create = async (body) => {
     throw new NotFoundException('Order not found')
   }
   const trolley = productsRequest.reduce((result, item)=> {
-    const product = products.trolley.find((product) => product.id == item.product)
+    const product = products.products.find((product) => product.id == item.product)
     if (product) {
       result.push({
         id: item.product,

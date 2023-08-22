@@ -50,10 +50,14 @@ router.post('/reset', async (req, res) => {
     }
 })
 router.post('/new-password', async (req,res)=>{
-  const { body:{email, password}} = req
+  const { email, password} = req.body
+  const user = await UsuarioModel.findOne(email)
+  if (!user) {
+    return res.render('new-password', { error: 'Ocurrio un problema' })
+  }
   console.log('email, password',email, password)
   user.password = createHash(password)
-  await UsuarioModel.updateOne({ email }, user) 
+  await UsuarioModel.updateOne( email, user) 
   res.redirect('/static/login.html')
 })
 /*router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {

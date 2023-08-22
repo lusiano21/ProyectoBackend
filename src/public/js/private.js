@@ -18,8 +18,11 @@
             <p><strong>D.N.I.</strong>: ${data.payload.dni}</p>
             <p><strong>Email</strong>: ${data.payload.email}</p>
             <p><strong>Rol</strong>: ${data.payload.rol}</p>
-        </div>
-            `;
+        </div>`
+        if(data.payload.rol === 'admin'){
+        profile.innerHTML = `<a href="/create" type="button" class="btn btn-outline-primary">Crear Productos</a>
+        `;
+        }
       } else {
         alert('You are not authorized to view this page. Redirecting to login page...');
         window.location.href = '/static/login.html';

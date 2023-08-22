@@ -9,12 +9,12 @@
           <input type="text" name="apellido" class="form-control" id="exampleInputLastName" required>
     </div>
     <div class="col-md-5">
-        <label for="autoSizingInputGroup" class="visually-hidden">Gmail</label>
+        <label for="autoSizingInputGroup" class="form-label">Gmail</label>
             <div class="input-group">
               <div class="input-group-text">@</div>
               <input type="email" name="email" class="form-control" id="autoSizingInputGroup" placeholder="Email" required>
             </div>
-          </div>
+    </div>
     <div class="col-md-5">
           <label for="exampleInputAge" class="form-label">Edad</label>
           <input type="number" name="edad" class="form-control" id="exampleInputAge" aria-describedby="ageHelp" required>
@@ -33,11 +33,13 @@
         <input type="password" name="password" class="form-control" id="exampleInputPassword" aria-describedby="passwordHelp" required>
         <div id="passwordHelp" class="form-text">Mientas mas caracteres tenga la contraseña sera más segura</div>
     </div>
-    <div id="SelectRol" class="input-group mb-3">Rol</div>
-        <select id="rol" name="rol" class="form-select" aria-label="SelectRol">
+    <div class="col-md-5">
+        <label for="rol" class="form-label">Rol</label>
+        <select id="rol" name="rol" class="form-select">
             <option value="user">User</option>
             <option value="admin">Admin</option>
         </select> 
+    </div>    
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">Upload</label>
         <input type="file" name="avatar" class="form-control" id="inputGroupFile01" required>

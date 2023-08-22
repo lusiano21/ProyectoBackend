@@ -1,6 +1,6 @@
 (function() {
     const formLogin = document.getElementById('form-login');
-    const inputEmail = document.getElementById('email');
+    const inputEmail = document.getElementById('email').value;
     const inputPassword = document.getElementById('password');
     inputPassword.onchange = () => {};
     formLogin.addEventListener('submit', async (event) => {
@@ -9,6 +9,7 @@
         email: inputEmail.value,
         password: inputPassword.value,
       };
+      console.log(data)
       fetch('/api/sessions/new-password', {
         method: 'POST',
         headers: {

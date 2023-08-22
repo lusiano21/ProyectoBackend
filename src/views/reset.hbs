@@ -3,7 +3,7 @@
     {{#if error }}
     <p>{{error}}</p>
     {{/if}}
-    <form action="/api/sessions/reset" method="post">
+    <form id="form-login">
         <input type="email" id="email" name="email" placeholder="Email">
         <!--<input type="password"  name="password" placeholder="Contraseña">-->      
         <button type="submit" class="btn btn-outline-primary">Enviar</button>

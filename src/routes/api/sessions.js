@@ -1,4 +1,4 @@
-import passport from 'passport'
+
 import UsuarioModel from "../../models/usuario.js";
 import { uploader } from '../../utils/multer.js';
 import { Router } from 'express'

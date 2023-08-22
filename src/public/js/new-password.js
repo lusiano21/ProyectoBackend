@@ -2,7 +2,6 @@
     const formLogin = document.getElementById('form-login');
     const inputEmail = document.getElementById('email');
     const inputPassword = document.getElementById('password');
-    inputEmail.onchange = () => {};
     inputPassword.onchange = () => {};
     formLogin.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -10,7 +9,7 @@
         email: inputEmail.value,
         password: inputPassword.value,
       };
-      fetch('/api/sessions/reset', {
+      fetch('/api/sessions/new-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

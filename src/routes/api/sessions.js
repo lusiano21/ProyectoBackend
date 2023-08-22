@@ -46,11 +46,11 @@ router.post('/reset', async (req, res) => {
          </div>
         `
       )
-      res.render('reset', { error: 'Te enviamos un email' })
+      return res.render('reset', { error: 'Te enviamos un email' })
     }
 })
 router.post('/new-password', async (req,res)=>{
-  const { email, password} = req.body
+  const { body:{email, password}} = req
   console.log('email, password',email, password)
   user.password = createHash(password)
   await UsuarioModel.updateOne({ email }, user) 

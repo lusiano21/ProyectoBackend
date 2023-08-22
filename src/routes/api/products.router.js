@@ -34,8 +34,7 @@ router.post('/products',uploader.single('image'),authJWTMiddleware('admin'), asy
       price,
       image:`${process.env.NODE_HOST}static/img/${file.originalname}`
     })
-    res.status(201)
-    res.redirect('/')
+    res.status(201).redirect('/')
   } catch (error) {
     next(error)
   }

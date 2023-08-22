@@ -45,12 +45,10 @@ export const create = async (req, res, next ) => {
       rol,
       password: createHash(password),
     })
-    res.status(201).json({success:true, user})
-    
-  } catch (error) {
+    res.status(201).redirect('/')
+  } catch (error){
     next(error)
   }
-  
 }
 export const get = async (req,res,next) => {
   try {

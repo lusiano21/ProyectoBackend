@@ -32,12 +32,12 @@ router.post('/reset', async (req, res) => {
       }
     } = req
     if (!email) {
-      alert('Hubo un problema con encontrar el usuario')
+      return res.render('reset', { error: 'Hubo un problema con el Email' })
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
     }
     const user = await UsuarioModel.findOne({ email })
     if (!user) {
-      return res.render('reset', { error: 'Email no existe.' })
+      return res.render('reset', { error: 'Email no existe' })
     }else{
       await emailService.sendEmail(
         `${user.email}`,

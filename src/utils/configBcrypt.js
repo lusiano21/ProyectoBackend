@@ -20,6 +20,13 @@ export const tokenGenerator = (user) => {
   const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
   return token
 }
+export const tokenGeneratorforReset = (user) => {
+  const payload = {
+    email: user.email,
+  }
+  const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
+  return token
+}
 export const isValidToken = (token) => {
   return new Promise((resolve) => {
     jsonwebtoken.verify(token, JWT_SECRET, (error, payload) => {

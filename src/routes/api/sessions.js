@@ -3,7 +3,7 @@ import UsuarioModel from "../../models/usuario.js";
 import { uploader } from '../../utils/multer.js';
 import { Router } from 'express'
 import { create } from '../../controllers/usuarios.js';
-import { tokenGenerator, createHash, validatePassword} from '../../utils/configBcrypt.js';
+import { tokenGenerator, createHash, validatePassword, tokenGeneratorforReset} from '../../utils/configBcrypt.js';
 import emailService from '../../servicios/email.service.js';
 
 const router = Router()
@@ -27,7 +27,6 @@ router.post('/register', uploader.single('avatar'), create)
 
 router.post('/reset', async (req, res) => {
     const { body:{ email } } = req
-    console.log('email',email)
     if (!email) {
       return res.render('reset', { error: 'Hubo un problema con el Email' })
       //return res.render('reset', { error: 'Todo los campos debe venir en la solicitud.' })
@@ -43,16 +42,18 @@ router.post('/reset', async (req, res) => {
         <div>
           <h1>Hola ${user.fullname}.</h1>
           <p>Nos comunicamos contigo por que quieres cambiar de contraseña.</p>
-          <p>Para cambiar la contraseña ingresa <a href="https://proyectobackend-production-1746.up.railway.app/new-password?token=${Date.now()}">aquí</a></p>
+          <p>Para cambiar la contraseña ingresa <a href="https://proyectobackend-production-1746.up.railway.app/new-password?token=${tokenGeneratorforReset(user)}">aquí</a></p>
          </div>
         `
       )
+      return res.render('reset', { error: 'Te hemos enviado un correo con el link para cambiar tu contraseña' })
     }
-    user.password = createHash(password)
+})
+router.post('/new-password', async (req,res)=>{
+  user.password = createHash(password)
     await UsuarioModel.updateOne({ email }, user) 
     res.redirect('/static/login.html')
 })
-
 /*router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
     req.session.user = req.user
     res.redirect('/profile')

@@ -27,22 +27,9 @@ router.get('/reset', async(req, res)=> {
   res.render('reset')
 });
 router.get('/new-password', async (req, res) => {
-  console.log(req.query.token)
   const {query}=req
-  console.log("query",query)
-  console.log("query.token",query.token)
-  console.log("IsValidToken", await isValidToken(query))
   if(await isValidToken(query.token)){
-    res.send( `
-    <div>
-      <h1>Escriba su nueva contraseña 🛅</h1>
-      <form action="/api/sessions/new-password" method="POST">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Contraseña">
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-    `)
+    res.redirect('new-password', query.token)
   }else{
     res.send(
       `<div>

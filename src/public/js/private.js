@@ -2,6 +2,7 @@
   const avatar = document.getElementById('avatar');
   const button = document.getElementById('sign-out');
   const profile = document.getElementById('profile');
+  const footer = document.getElementById('footer');
   
   fetch('/api/sessions/me')
     .then(res => res.json())
@@ -20,7 +21,7 @@
             <p><strong>Rol</strong>: ${data.payload.rol}</p>
         </div>`
         if(data.payload.rol === 'admin'){
-        profile.innerHTML = `<a href="/create" type="button" class="btn btn-outline-primary">Crear Productos</a>
+        footer.innerHTML = `<a href="/create" type="button" class="btn btn-outline-primary">Crear Productos</a>
         `;
         }
       } else {

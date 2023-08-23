@@ -13,7 +13,7 @@ import {
   getProductsById,
   updateProductsById
 } from '../dao/products.js'
-//import twilioService from '../servicios/twilio.service.js'
+import twilioService from '../servicios/twilio.service.js'
 import emailService from '../servicios/email.service.js'
 import { NotFoundException } from '../utils/exception.js'
 
@@ -59,7 +59,6 @@ export const create = async (body) => {
   const subtotal = trolley.reduce((acc, product) => {
     return acc + (products.stock - product.quantity)
   }, 0)
-  console.log('subtotal',subtotal)
   if(trolley.length !== 0){
     const newOrder = {
     user: user.id,
@@ -102,6 +101,7 @@ export const create = async (body) => {
     </div>
     `
   )
+  await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)
   return {
     status: 'success',
     payload: order,
@@ -122,7 +122,6 @@ export const create = async (body) => {
       payload: order,
     }
   }
-  //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
 }
 
 export const getById = async (id) => {

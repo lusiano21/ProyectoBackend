@@ -16,7 +16,13 @@ Pagina privada donde pode ver tus datos y podes chatear con otros usuarios
 Pagina para ver todos los business disponibles y sus productos 
 
 *https://proyectobackend-production-1746.up.railway.app/create
-Pagina para crear los business 
+Pagina para crear los business solo habilitado para admins
+
+*https://proyectobackend-production-1746.up.railway.app/reset
+Pagina para la cual te envia un correo con un link para cambiar tu contraseña
+
+*https://proyectobackend-production-1746.up.railway.app/new-password
+Pagina para cmabiar la contraseña, solo sera habilitada con el token validado
 #### Usuarios:
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/user
@@ -48,17 +54,13 @@ Metodo get: Trae todas las ordenes creadas.(Solo con el rol de "admin").
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order
 Metodo post: Puede crear ordenes de con el formato de:
 user:(id del usuario),
-business:(id del negocio),
-products:[product(id del producto creado en business), quantity(Cantidad en la que lo vas a comprar), price(Cuanto cuesta comprarlo)]
+product:(id del negocio),
+products:[product(id del producto creado en products), quantity(Cantidad en la que lo vas a comprar), price(Cuanto cuesta comprarlo)]
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id
 Metodo get: Puede traer al informacion de una orden especifica dependiendo el rol:
 "admin": Cualquier Orden.
 "user": Solo puede trer tu Orden.
-
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id/resolve
-Metodo put: Puede completar o cancelar tu orden dependiendo de lo que elijas, por default esta en pending con el formato:
-status:completed o canceled
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id
 Metodo delelte: Puedes borrar una orden solo si eres de rol "admin"
@@ -70,6 +72,8 @@ Metodo get: Puede traer todas los business, solo lo puede hacer con el rol "admi
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/products
 Metodo post: Puede crear los business, con el formato;
 name:(Nombre del negocio)
+image:(Imagen que del negocio)
+stock:(Stock disponible del producto)
 products:[
     id:(numero de identificador del producto),
     name:(nombre del Negocio),
@@ -79,8 +83,8 @@ products:[
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/products/:id
 Metodo get: Puede traer un business en especifico, solo lo puede hacer con el rol "admin"
 
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/business/:id
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/products/:id
 Metodo put: Puede modificar los business especificados, solo se puede hacer con el rol "admin"
 
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/business/:id
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/products/:id
 Metodo delete: Puede eliminar el business especificado, solo lo puede hacer con el rol "admin"

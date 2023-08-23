@@ -34,7 +34,8 @@ router.get('/new-password', async (req, res) => {
   }else{
     res.send(
       `<div>
-    <h1>No puedes estar acá 😥</h1>
+       <h1>Esta pagina no esta hablitada</h1>
+       <a href="/"> Inicio </a> 
       </div>`
     )
     

@@ -71,7 +71,7 @@ export const create = async (body) => {
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
   await updateProductsById(`${products.id}`, {"stock":`${subtotal}`})
-  await emailService.sendEmail(
+  /*await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',
     `
@@ -101,7 +101,7 @@ export const create = async (body) => {
     </div>
     `
   )
-  await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)
+  await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)*/
   return {
     status: 'success',
     payload: order,

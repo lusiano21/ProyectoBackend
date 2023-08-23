@@ -48,7 +48,10 @@ export const create = async (body) => {
         price: product.price,
         quantity: item.quantity,
       });
-      updateProductsById(`${products.id}`, {"stock":(product.stock - item.quantity)})
+      const des = (product.stock - item.quantity)
+      console.log('des',des)
+      const prueba = updateProductsById(`${products.id}`, {"stock":`${des}`})
+      console.log('prueba', prueba)
       }
       return result
     }

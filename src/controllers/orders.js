@@ -14,7 +14,7 @@ import {
   updateProductsById
 } from '../dao/products.js'
 //import twilioService from '../servicios/twilio.service.js'
-//import emailService from '../servicios/email.service.js'
+import emailService from '../servicios/email.service.js'
 import { NotFoundException } from '../utils/exception.js'
 
 export const get = async (query = {}) => {

@@ -55,7 +55,7 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
-  if(trolley !== []){
+  if(trolley.length !== 0){
     const newOrder = {
     user: user.id,
     product: products.id,
@@ -73,6 +73,17 @@ export const create = async (body) => {
     <div>
       <h1>Hola ${user.fullname}.</h1>
       <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
+      <table>
+        <tr>
+          <th>Factura</th>
+        </tr>
+        <tr>
+           <td>Id: ${order.id}</td>
+           <td>Usuario: ${user.email}</td>
+           <td>Total: ${order.total}</td>
+           <td>Fecha: ${order.createdAt}</td>
+        </tr>
+      </table>
       <p>Muchas gracias por tu orden.</p>
     </div>
     `

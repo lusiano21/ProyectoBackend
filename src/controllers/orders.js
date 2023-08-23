@@ -9,7 +9,6 @@ import {
   getUserById,
   updateUserById
 } from '../dao/user.js'
-import UsuarioModel from '../models/usuario.js'
 import {
   getProductsById,
 } from '../dao/products.js'
@@ -42,18 +41,22 @@ export const create = async (body) => {
   const trolley = productsRequest.reduce((result, item)=> {
     const product = products.products.find((product) => product.id == item.product)
     if (product) {
-      result.push({
+      if(product.price == item.price){
+        result.push({
         id: item.product,
         price: product.price,
         quantity: item.quantity,
       })
+      }
+      return result
     }
     return result
   }, [])
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
-  const newOrder = {
+  if(trolley == []){
+    const newOrder = {
     user: user.id,
     product: products.id,
     products: trolley,
@@ -63,11 +66,7 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
-  console.log('user id',`${user.id}`)
-  const usuario = await UsuarioModel.find({_id: `${user.id}`})
-  console.log('usuario',JSON.stringify(usuario, null, 2))
-  //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
-  const result = await emailService.sendEmail(
+  await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',
     `
@@ -76,13 +75,16 @@ export const create = async (body) => {
       <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
       <p>Muchas gracias por tu orden.</p>
     </div>
-    `,
+    `
   )
-  console.log('order para ver el resultado',order)
   return {
     status: 'success',
     payload: order,
   }
+  }else{
+    throw new NotFoundException('Order problem')
+  }
+  //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
 }
 
 export const getById = async (id) => {

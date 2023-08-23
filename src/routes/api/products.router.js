@@ -22,16 +22,14 @@ router.get('/products', authJWTMiddleware('admin'), async (req, res, next) => {
 
 router.post('/products',uploader.single('image'),authJWTMiddleware('admin'), async (req, res, next) => {
   try {
-    const {name, id, menu, price} = req.body
+    const {name, id, menu, price, stock} = req.body
     const { file } = req
-    console.log("name",name)
-    console.log("products",id, menu, price)
-    console.log("file", file)
     const products = await create({
       name, 
       id,
       menu,
       price,
+      stock,
       image:`${process.env.NODE_HOST}static/img/${file.originalname}`
     })
     res.status(201).redirect('/')

@@ -41,7 +41,7 @@ export const create = async (body) => {
   const trolley = productsRequest.reduce((result, item)=> {
     const product = products.products.find((product) => product.id == item.product)
     if (product) {
-      if(product.price == item.price || product.stock >= item.quantity){
+      if(product.price == item.price && product.stock >= item.quantity){
         result.push({
         id: item.product,
         price: product.price,
@@ -55,7 +55,7 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
-  if(trolley == []){
+  if(trolley !== []){
     const newOrder = {
     user: user.id,
     product: products.id,
@@ -77,6 +77,10 @@ export const create = async (body) => {
     </div>
     `
   )
+  return {
+    status: 'success',
+    payload: order,
+  }
   }else{
     const newOrder = {
       user: user.id,
@@ -86,10 +90,12 @@ export const create = async (body) => {
       status:'canceled'
     }
     const order = await createOrder(newOrder)
-  }
-  return {
-    status: 'success',
-    payload: order,
+    user.orders.push(`${order.id}`)
+    await updateUserById(`${user.id}`, user)
+    return {
+      status: 'success',
+      payload: order,
+    }
   }
   //const result = await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola muchas gracias por tu compra`)
 }

@@ -42,16 +42,12 @@ export const create = async (body) => {
   const trolley = productsRequest.reduce((result, item)=> {
     const product = products.products.find((product) => product.id == item.product)
     if (product) {
-      if(product.price == item.price && product.stock >= item.quantity){
+      if(product.price == item.price && products.stock >= item.quantity){
         result.push({
         id: item.product,
         price: product.price,
         quantity: item.quantity,
       });
-      const des = (product.stock - item.quantity)
-      console.log('des',des)
-      const prueba = updateProductsById(`${products.id}`, { "products":[{"id":`${product.id}`,"menu":`${product.menu}`,"price":`${product.price}`,"stock":`${des}`}] })
-      console.log('prueba', prueba)
       }
       return result
     }
@@ -60,6 +56,10 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
+  const subtotal = trolley.reduce((acc, product) => {
+    return acc + (products.stock - product.quantity)
+  }, 0)
+  console.log('subtotal',subtotal)
   if(trolley.length !== 0){
     const newOrder = {
     user: user.id,
@@ -71,6 +71,7 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
+  await updateProductsById(`${products.id}`, JSON.stringify({"stock":`${subtotal}`}))
   await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',

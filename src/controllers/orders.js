@@ -181,6 +181,10 @@ export const resolve = async (id, body) => {
   order.status = status
   await updateOrderById(id, order)
   if(order.status == "completed"){
+    const user = await getUserById(order.user)
+    if (!user) {
+      throw new NotFoundException('User not found')
+    }
     const business = await getProductsById(order.product)
     if (!business) {
       throw new NotFoundException('Products not found')
@@ -206,7 +210,7 @@ export const resolve = async (id, body) => {
             <td>Usuario: ${user.email}</td>
           </tr>
           </tr>
-            <td>Local: ${products.name}</td>
+            <td>Local: ${business.name}</td>
           </tr>
           <tr>   
              <td>Total: ${order.total}</td>

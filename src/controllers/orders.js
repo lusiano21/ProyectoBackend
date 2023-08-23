@@ -178,13 +178,12 @@ export const resolve = async (id, body) => {
   if (!order) {
     throw new NotFoundException('Order not found')
   }
-
   const { status } = body
   order.status = status
   await updateOrderById(id, order)
-
   return {
     status: 'success',
     payload: order,
+    payloadStatus: order.status,
   }
 }

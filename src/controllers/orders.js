@@ -11,6 +11,7 @@ import {
 } from '../dao/user.js'
 import {
   getProductsById,
+  updateProductsById
 } from '../dao/products.js'
 //import twilioService from '../servicios/twilio.service.js'
 import emailService from '../servicios/email.service.js'
@@ -46,7 +47,8 @@ export const create = async (body) => {
         id: item.product,
         price: product.price,
         quantity: item.quantity,
-      })
+      });
+      updateProductsById(`${products.id}`, {"stock":(product.stock - item.quantity)})
       }
       return result
     }
@@ -66,12 +68,6 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
-  let prueba = products.products
-  let prueba2 = order.products
-  console.log('Nombre del Menu',products.products.menu)
-  console.log('Cantidad del Menu',order.products.quantity)
-  console.log('Menu',prueba.menu)
-  console.log('Cantidad',prueba2.quantity)
   await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',
@@ -88,11 +84,8 @@ export const create = async (body) => {
         </tr>
           <td>Usuario: ${user.email}</td>
         </tr>
-        <tr>
-          <td>Producto: ${products.products.menu} 
         </tr>
-        <tr>
-          <td>Cantidad: ${order.products.quantity} 
+          <td>Local: ${products.name}</td>
         </tr>
         <tr>   
            <td>Total: ${order.total}</td>

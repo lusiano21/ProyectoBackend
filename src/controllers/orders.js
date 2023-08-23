@@ -78,9 +78,20 @@ export const create = async (body) => {
           <th>Factura</th>
         </tr>
         <tr>
-           <td>Id: ${order.id}</td>
-           <td>Usuario: ${user.email}</td>
+          <td>Id: ${order.id}</td>
+        </tr>
+          <td>Usuario: ${user.email}</td>
+        </tr>
+        <tr>
+          <td>Producto: ${products.products.menu} 
+        </tr>
+        <tr>
+          <td>Cantidad: ${order.products.quantity} 
+        </tr>
+        <tr>   
            <td>Total: ${order.total}</td>
+        </tr>
+        <tr>
            <td>Fecha: ${order.createdAt}</td>
         </tr>
       </table>

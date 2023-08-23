@@ -71,7 +71,7 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
-  await updateProductsById(`${products.id}`, JSON.stringify({"stock":`${subtotal}`}))
+  await updateProductsById(`${products.id}`, {"stock":`${subtotal}`})
   await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',

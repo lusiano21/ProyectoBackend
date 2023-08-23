@@ -181,6 +181,9 @@ export const resolve = async (id, body) => {
   const { status } = body
   order.status = status
   await updateOrderById(id, order)
+  if(order.status == "pending"){
+    console.log("linea habilitada")
+  }
   return {
     status: 'success',
     payload: order,

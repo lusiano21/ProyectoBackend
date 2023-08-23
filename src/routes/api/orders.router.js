@@ -41,11 +41,6 @@ router.get('/order/:id', authJWTMiddleware(["user", "admin"]), async (req, res, 
 router.put('/order/:id/resolve',authJWTMiddleware("admin"), async (req, res, next) => {
   try {
     const order = await resolve(req.params.id, req.body)
-    console.log("order:", order)
-    console.log("order status:", order.payloadStatus)
-    if(order.payloadStatus == "pending"){
-      console.log("linea habilitada")
-    }
     res.status(200).json(order)
   } catch (error) {
     next(error)

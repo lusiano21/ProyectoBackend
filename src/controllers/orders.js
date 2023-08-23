@@ -66,6 +66,10 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
+  console.log('Nombre del Menu',products.products.menu)
+  console.log('Cantidad del Menu',order.products.quantity)
+  console.log('Menu',products.products)
+  console.log('Cantidad',order.products)
   await emailService.sendEmail(
     `${user.email}`,
     'Compra en Rappiplay',

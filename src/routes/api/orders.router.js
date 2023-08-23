@@ -43,7 +43,7 @@ router.put('/order/:id/resolve',authJWTMiddleware("admin"), async (req, res, nex
     const order = await resolve(req.params.id, req.body)
     console.log("order:", order)
     console.log("order status:", order.payloadStatus)
-    if(order.status == "pending"){
+    if(order.payloadStatus == "pending"){
       console.log("linea habilitada")
     }
     res.status(200).json(order)

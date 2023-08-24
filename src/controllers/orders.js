@@ -66,8 +66,6 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
-  /*
-  await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)*/
   return {
     status: 'success',
     payload: order,
@@ -158,19 +156,14 @@ export const resolve = async (id, body) => {
     }
     const product = order.products.map((product) => product.quantity)
     const [a] = product
-    console.log('Me deja Entrar al array', a)
-    console.log('Business', business.stock)
     if(business.stock >= a){
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)
       await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
       user.orders = user.orders.filter((or) =>{ 
-        console.log('or._id',or._id)
-        console.log('order._id',order._id)
-        return or._id != order._id
+        return or._id != order.id
       })
-      console.log('user :',user)
       await updateUserById(`${user.id}`, user)
       await emailService.sendEmail(
         `${user.email}`,
@@ -202,7 +195,7 @@ export const resolve = async (id, body) => {
         </div>
         `
       )
-      
+      await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)
     } else{
       order.status = 'pending'
       await updateOrderById(id, order)

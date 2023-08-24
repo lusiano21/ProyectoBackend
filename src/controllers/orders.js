@@ -156,9 +156,10 @@ export const resolve = async (id, body) => {
     if (!business) {
       throw new NotFoundException('Products not found')
     }
-    const product = order.products.map((product) => product)
-    console.log('Me deja Entrar al array', product.quantity)
-    if(business.stock >= product){
+    const product = order.products.map((product) => product.quantity)
+    const [a] = product
+    console.log('Me deja Entrar al array', product)
+    if(business.stock >= a){
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)

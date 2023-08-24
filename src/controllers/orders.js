@@ -167,8 +167,8 @@ export const resolve = async (id, body) => {
       await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
       user.orders = user.orders.filter((or) =>{ 
         console.log('or._id',or._id)
-        console.log('order._id',order.id)
-        return or._id != order.id
+        console.log('order._id',order._id)
+        return or._id != order._id
       })
       console.log('user :',user)
       await updateUserById(`${user.id}`, user)

@@ -161,11 +161,14 @@ export const resolve = async (id, body) => {
     console.log('Me deja Entrar al array', a)
     console.log('Business', business.stock)
     if(business.stock >= a){
-      console.log('Logramos encontrar')
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)
       await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
+      user.orders.filter((or) =>{ 
+        return or != order.id
+      })
+      await updateUserById(`${user.id}`, user)
       await emailService.sendEmail(
         `${user.email}`,
         'Compra en Rappiplay',
@@ -196,6 +199,7 @@ export const resolve = async (id, body) => {
         </div>
         `
       )
+      
     } else{
       order.status = 'pending'
       await updateOrderById(id, order)

@@ -79,8 +79,6 @@ export const create = async (body) => {
       status:'canceled'
     }
     const order = await createOrder(newOrder)
-    user.orders.push(`${order.id}`)
-    await updateUserById(`${user.id}`, user)
     return {
       status: 'success',
       payload: order,
@@ -117,6 +115,16 @@ export const removeById = async (id) => {
     throw new NotFoundException('Order not found')
   }
   const result = await deleteOrderById(id)
+  if(order.status == "pending"){
+  const user = await getUserById(order.user)
+    if (!user) {
+      throw new NotFoundException('User not found')
+    }
+  user.orders = user.orders.filter((or) =>{ 
+    return or._id != order.id
+  })
+  await updateUserById(`${user.id}`, user)
+  }
   return {
     status: 'success',
     payload: result,

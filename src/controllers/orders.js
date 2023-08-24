@@ -145,7 +145,6 @@ export const resolve = async (id, body) => {
     throw new NotFoundException('Order not found')
   }
   const { status } = body
-  console.log('Saber que tipo trae status', status)
   order.status = status
   await updateOrderById(id, order)
   if(order.status == "completed"){
@@ -157,8 +156,9 @@ export const resolve = async (id, body) => {
     if (!business) {
       throw new NotFoundException('Products not found')
     }
-    console.log('Me deja Entrar al array', order.products.quantity)
-    if(business.stock >= order.products.quantity){
+    const product = order.map((product) => product.products)
+    console.log('Me deja Entrar al array', product)
+    if(business.stock >= product.quantity){
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)
@@ -193,7 +193,10 @@ export const resolve = async (id, body) => {
         </div>
         `
       )
-    } else{}
+    } else{
+      order.status = 'pending'
+      await updateOrderById(id, order)
+    }
   }
   return {
     status: 'success',

@@ -165,9 +165,12 @@ export const resolve = async (id, body) => {
         return acc + (business.stock - product.quantity)
       }, 0)
       await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
-      user.orders.filter((or) =>{ 
-        return or.id != order.id
+      user = user.orders.filter((or) =>{ 
+        console.log('or._id',or._id)
+        console.log('order._id',order._id)
+        return or._id != order.id
       })
+      console.log('user :',user)
       await updateUserById(`${user.id}`, user)
       await emailService.sendEmail(
         `${user.email}`,

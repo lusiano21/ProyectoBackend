@@ -159,7 +159,9 @@ export const resolve = async (id, body) => {
     const product = order.products.map((product) => product.quantity)
     const [a] = product
     console.log('Me deja Entrar al array', a)
+    console.log('Business', business.stock)
     if(business.stock >= a.toString){
+      console.log('Logramos encontrar')
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)

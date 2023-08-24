@@ -8,6 +8,6 @@ router
   .get('/user/:uid', authJWTMiddleware(['admin', 'user']), getById)
   .get('/me', authJWTMiddleware(['admin','user']), me)
   .put('/user/:uid', authJWTMiddleware(['admin', 'user']), updateById)
-  .delete('/user/:uid', authJWTMiddleware(['admin', 'user']), removeById)
+  .delete('/user/:uid', authJWTMiddleware('admin'), removeById)
 
 export default router

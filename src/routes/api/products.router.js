@@ -11,7 +11,7 @@ import {
 
 const router = Router()
 
-router.get('/products', authJWTMiddleware('admin'), async (req, res, next) => {
+router.get('/products', authJWTMiddleware(['admin','user']), async (req, res, next) => {
   try {
     const products = await get(req.query)
     res.status(200).json(products)

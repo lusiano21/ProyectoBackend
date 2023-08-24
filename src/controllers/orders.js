@@ -56,9 +56,6 @@ export const create = async (body) => {
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)
-  /*const subtotal = trolley.reduce((acc, product) => {
-    return acc + (products.stock - product.quantity)
-  }, 0)*/
   if(trolley.length !== 0){
     const newOrder = {
     user: user.id,
@@ -69,37 +66,7 @@ export const create = async (body) => {
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)
-  //await updateProductsById(`${products.id}`, {"stock":`${subtotal}`})
-  /*await emailService.sendEmail(
-    `${user.email}`,
-    'Compra en Rappiplay',
-    `
-    <div>
-      <h1>Hola ${user.fullname}.</h1>
-      <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
-      <table>
-        <tr>
-          <th>Factura</th>
-        </tr>
-        <tr>
-          <td>Id: ${order.id}</td>
-        </tr>
-          <td>Usuario: ${user.email}</td>
-        </tr>
-        </tr>
-          <td>Local: ${products.name}</td>
-        </tr>
-        <tr>   
-           <td>Total: ${order.total}</td>
-        </tr>
-        <tr>
-           <td>Fecha: ${order.createdAt}</td>
-        </tr>
-      </table>
-      <p>Muchas gracias por tu orden.</p>
-    </div>
-    `
-  )
+  /*
   await twilioService.sendSMS(`+54${user.phone.toString()}`, `Hola somos de Rappiplay muchas gracias por tu compra, te enviamos los detalles de tu compra por correo`)*/
   return {
     status: 'success',
@@ -178,6 +145,7 @@ export const resolve = async (id, body) => {
     throw new NotFoundException('Order not found')
   }
   const { status } = body
+  console.log('Saber que tipo trae status', status)
   order.status = status
   await updateOrderById(id, order)
   if(order.status == "completed"){
@@ -189,40 +157,43 @@ export const resolve = async (id, body) => {
     if (!business) {
       throw new NotFoundException('Products not found')
     }
-    const subtotal = order.products.reduce((acc, product) => {
-      return acc + (business.stock - product.quantity)
-    }, 0)
-    await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
-    await emailService.sendEmail(
-      `${user.email}`,
-      'Compra en Rappiplay',
-      `
-      <div>
-        <h1>Hola ${user.fullname}.</h1>
-        <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
-        <table>
-          <tr>
-            <th>Factura</th>
-          </tr>
-          <tr>
-            <td>Id: ${order.id}</td>
-          </tr>
-            <td>Usuario: ${user.email}</td>
-          </tr>
-          </tr>
-            <td>Local: ${business.name}</td>
-          </tr>
-          <tr>   
-             <td>Total: ${order.total}</td>
-          </tr>
-          <tr>
-             <td>Fecha: ${order.createdAt}</td>
-          </tr>
-        </table>
-        <p>Muchas gracias por tu orden.</p>
-      </div>
-      `
-    )
+    console.log('Me deja Entrar al array', order.products.quantity)
+    if(business.stock >= order.products.quantity){
+      const subtotal = order.products.reduce((acc, product) => {
+        return acc + (business.stock - product.quantity)
+      }, 0)
+      await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
+      await emailService.sendEmail(
+        `${user.email}`,
+        'Compra en Rappiplay',
+        `
+        <div>
+          <h1>Hola ${user.fullname}.</h1>
+          <p>Somos de Rappiplay y queremos contarte que tu order se enviado con exito.</p>
+          <table>
+            <tr>
+              <th>Factura</th>
+            </tr>
+            <tr>
+              <td>Id: ${order.id}</td>
+            </tr>
+              <td>Usuario: ${user.email}</td>
+            </tr>
+            </tr>
+              <td>Local: ${business.name}</td>
+            </tr>
+            <tr>   
+               <td>Total: ${order.total}</td>
+            </tr>
+            <tr>
+               <td>Fecha: ${order.createdAt}</td>
+            </tr>
+          </table>
+          <p>Muchas gracias por tu orden.</p>
+        </div>
+        `
+      )
+    } else{}
   }
   return {
     status: 'success',

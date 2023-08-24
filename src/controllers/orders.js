@@ -166,7 +166,7 @@ export const resolve = async (id, body) => {
       }, 0)
       await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
       user.orders.filter((or) =>{ 
-        return or != order.id
+        return or.id != order.id
       })
       await updateUserById(`${user.id}`, user)
       await emailService.sendEmail(

@@ -4,6 +4,7 @@ import {
   get,
   getById,
   create,
+  addProduct,
   resolve,
   removeById
 } from '../../controllers/orders.js'
@@ -22,7 +23,6 @@ router.get('/order',authJWTMiddleware("admin"), async (req, res, next) => {
 router.post('/order',authJWTMiddleware(["user","admin"]), async (req, res, next) => {
   try {
     const order = await create(req.body)
-    console.log(order)
     res.status(201).json(order)
   } catch (error) {
     next(error)
@@ -32,6 +32,15 @@ router.post('/order',authJWTMiddleware(["user","admin"]), async (req, res, next)
 router.get('/order/:id', authJWTMiddleware(["user", "admin"]), async (req, res, next) => {
   try {
     const order = await getById(req.params.id)
+    res.status(200).json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/order/:id', authJWTMiddleware("admin"), async (req, res, next) => {
+  try {
+    const order = await addProduct(req.params.id, req.body)
     res.status(200).json(order)
   } catch (error) {
     next(error)

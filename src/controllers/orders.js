@@ -153,16 +153,16 @@ export const resolve = async (id, body) => {
   order.status = status
   await updateOrderById(id, order)
   if(order.status == "completed"){
+    const productId = order.products.map((product) => product.product)
     const user = await getUserById(order.user)
     if (!user) {
       throw new NotFoundException('User not found')
     }
-    const business = await getProductsById(order.product)
+    const business = await getProductsById(productId)
     if (!business) {
       throw new NotFoundException('Products not found')
     }
     const product = order.products.map((product) => product.quantity)
-    const productId = order.products.map((product) => product.product)
     const [a] = product
     if(business.stock >= a){
       const subtotal = order.products.reduce((acc, product) => {

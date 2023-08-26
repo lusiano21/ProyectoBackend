@@ -34,7 +34,7 @@ export const create = async (body) => {
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  const products = "";
+  let products;
   const trolley = productsRequest.reduce((result, item)=> {
     products = getProductsById(item.product)
   if (!products) {
@@ -74,7 +74,6 @@ export const create = async (body) => {
   }else{
     const newOrder = {
       user: user.id,
-      product: products.id,
       products: trolley,
       total,
       status:'canceled'

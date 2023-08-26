@@ -82,7 +82,6 @@ export const create = async (body) => {
     })
   return {
     status: 'success',
-    payload: order,
   }
   }else{
     const newOrder = {

@@ -28,23 +28,22 @@ export const get = async (query = {}) => {
 export const create = async (body) => {
   let {
     user: userId,
+    product: productId,
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  let buy;
-  const trolley = productsRequest.reduce((result, item)=> {
-    const products = getProductsById(item.product)
-    buy = products
-    console.log("Prodocts:", products)
+  const products = getProductsById(productId)
   if (!products) {
     throw new NotFoundException('Products not found')
-  }else{
+  }
+  const trolley = productsRequest.reduce((result, item)=> {
+    if(products){
       if(products.price == item.price && products.stock >= item.quantity){
         result.push({
-        product: item.product,
+        product: products.id,
         id: item.id, 
         price: products.price,
         quantity: item.quantity,
@@ -52,9 +51,9 @@ export const create = async (body) => {
       }
       return result
     }
+    return result
   }, [])
-  console.log("Prodocts 2:", buy)
-  console.log("Carrito:",trolley)
+  
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)

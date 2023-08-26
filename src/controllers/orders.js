@@ -58,23 +58,28 @@ export const create = async (body) => {
     return acc + product.price * product.quantity
   }, 0)
   if(trolley.length !== 0){
-    const newOrder = {
-    user: user.id,
-    products: trolley,
-    total,
-  }
-  const repeat = user.orders.map((product) => {
-    if(product){
-      const addOrder = {
-        products: trolley,
-        total,
+    const repeat = user.orders.map((product) => {
+      if(product){
+        const order = getOrderById(product.id)
+        console.log(order, "Prueba: order")
+        const addOrder = {
+          products: trolley,
+          total,
+        }
+        console.log(addOrder, "Prueba: addOrder")
+        order.products = addOrder
+        updateOrderById(product.id, order)
+      } else {
+        const newOrder = {
+          user: user.id,
+          products: trolley,
+          total,
+        }
+      const order = createOrder(newOrder)
+      user.orders.push(`${order.id}`)
+      updateUserById(`${user.id}`, user)
       }
-      console.log(addOrder)
-    }
-  })
-  const order = await createOrder(newOrder)
-  user.orders.push(`${order.id}`)
-  await updateUserById(`${user.id}`, user)
+    })
   return {
     status: 'success',
     payload: order,

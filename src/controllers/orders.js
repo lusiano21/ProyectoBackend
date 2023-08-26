@@ -58,30 +58,17 @@ export const create = async (body) => {
     return acc + product.price * product.quantity
   }, 0)
   if(trolley.length !== 0){
-    const repeat = user.orders.map((product) => {
-      if(product){
-        const order = getOrderById(product.id)
-        console.log(order, "Prueba: order")
-        const addOrder = {
-          products: trolley,
-          total,
-        }
-        console.log(addOrder, "Prueba: addOrder")
-        order.products = addOrder
-        updateOrderById(product.id, order)
-      } else {
-        const newOrder = {
-          user: user.id,
-          products: trolley,
-          total,
-        }
-      const order = createOrder(newOrder)
-      user.orders.push(`${order.id}`)
-      updateUserById(`${user.id}`, user)
+      const newOrder = {
+        user: user.id,
+        products: trolley,
+        total,
       }
-    })
+      const order = await createOrder(newOrder)
+      user.orders.push(`${order.id}`)
+      await updateUserById(`${user.id}`, user)
   return {
     status: 'success',
+    payload: order,
   }
   }else{
     const newOrder = {
@@ -175,12 +162,13 @@ export const resolve = async (id, body) => {
       throw new NotFoundException('Products not found')
     }
     const product = order.products.map((product) => product.quantity)
+    const productId = order.products.map((product) => product.product)
     const [a] = product
     if(business.stock >= a){
       const subtotal = order.products.reduce((acc, product) => {
         return acc + (business.stock - product.quantity)
       }, 0)
-      await updateProductsById(`${order.product}`, {"stock":`${subtotal}`});
+      await updateProductsById(`${productId}`, {"stock":`${subtotal}`});
       user.orders = user.orders.filter((or) =>{ 
         return or._id != order.id
       })
@@ -201,14 +189,14 @@ export const resolve = async (id, body) => {
             </tr>
               <td>Usuario: ${user.email}</td>
             </tr>
-            </tr>
+            <tr>
               <td>Local: ${business.name}</td>
             </tr>
+            <tr>
+              <td>Menu: ${business.menu}</td>
             </tr>
-              <td>Local: ${business.menu}</td>
-            </tr>
-            </tr>
-              <td>Local: ${business.price}</td>
+            <tr>
+              <td>Precio: $${business.price}</td>
             </tr>
             <tr>   
                <td>Total: ${order.total}</td>

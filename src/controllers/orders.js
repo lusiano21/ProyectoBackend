@@ -41,8 +41,8 @@ export const create = async (body) => {
   }else{
       if(products.price == item.price && products.stock >= item.quantity){
         result.push({
-        id: products.id,
-        product: item.product, 
+        product: products.id,
+        id: item.product, 
         price: products.price,
         quantity: item.quantity,
       });
@@ -50,6 +50,7 @@ export const create = async (body) => {
       return result
     }
   }, [])
+  console.log("Carrito:",trolley)
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
   }, 0)

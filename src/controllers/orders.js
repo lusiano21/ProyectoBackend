@@ -34,9 +34,10 @@ export const create = async (body) => {
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  let products;
+  let buy;
   const trolley = productsRequest.reduce((result, item)=> {
-    products = getProductsById(item.product)
+    const products = getProductsById(item.product)
+    buy = products
     console.log("Prodocts:", products)
   if (!products) {
     throw new NotFoundException('Products not found')
@@ -52,7 +53,7 @@ export const create = async (body) => {
       return result
     }
   }, [])
-  console.log("Prodocts 2:", products)
+  console.log("Prodocts 2:", buy)
   console.log("Carrito:",trolley)
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity

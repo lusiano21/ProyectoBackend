@@ -39,7 +39,6 @@ Metodo put: Puede modificar las propiedades del o los usuarios dependiendo del r
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/user/:uid
 Metodo delelte: Puede eliminar al usuario dependiendo del rol
 "admin": Cualquier Usuario.
-"user": Solo puede eliminar tu usuario.
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/user/:uid
 Metodo get: puede traer a un usuario en especifico dependiendo del rol,
@@ -62,12 +61,18 @@ Metodo get: Puede traer al informacion de una orden especifica dependiendo el ro
 "admin": Cualquier Orden.
 "user": Solo puede trer tu Orden.
 
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id/resolve
+Metodo put: Puedes cambiar el estado de la orden para confirmar la compra
+
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id
+Metodo put: Puedes modificar los productos de la order el id, quantity o price
+
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id
 Metodo delelte: Puedes borrar una orden solo si eres de rol "admin"
 
 #### Products:
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/products
-Metodo get: Puede traer todas los business, solo lo puede hacer con el rol "admin"
+Metodo get: Puede traer todas los business, solo lo puede hacer con el rol "admin" y "user"
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/products
 Metodo post: Puede crear los business, con el formato;

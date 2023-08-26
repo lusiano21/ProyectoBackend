@@ -28,29 +28,27 @@ export const get = async (query = {}) => {
 export const create = async (body) => {
   let {
     user: userId,
-    product: productId,
     products: productsRequest,
   } = body
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  const products = await getProductsById(productId)
+  const trolley = productsRequest.reduce((result, item)=> {
+    const products = getProductsById(item.id)
   if (!products) {
     throw new NotFoundException('Products not found')
-  }
-  const trolley = productsRequest.reduce((result, item)=> {
-    if (products) {
+  }else{
       if(products.price == item.price && products.stock >= item.quantity){
         result.push({
-        id: item.product,
+        id: products.id,
+        product: item.product, 
         price: products.price,
         quantity: item.quantity,
       });
       }
       return result
     }
-    return result
   }, [])
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity
@@ -58,10 +56,11 @@ export const create = async (body) => {
   if(trolley.length !== 0){
     const newOrder = {
     user: user.id,
-    product: products.id,
     products: trolley,
     total,
   }
+  let repeat = user.orders.find(product => product.user == user.id);
+  console.log('Repeat', repeat)
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)

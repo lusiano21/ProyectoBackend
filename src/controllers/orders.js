@@ -40,7 +40,7 @@ export const create = async (body) => {
     throw new NotFoundException('Products not found')
   }
   const trolley = productsRequest.reduce((result, item)=> {
-    const product = products.products.find((product) => product.id == item.product)
+    const product = products.find((product) => product.menuId == item.product)
     if (product) {
       if(product.price == item.price && products.stock >= item.quantity){
         result.push({
@@ -191,6 +191,12 @@ export const resolve = async (id, body) => {
             </tr>
             </tr>
               <td>Local: ${business.name}</td>
+            </tr>
+            </tr>
+              <td>Local: ${business.menu}</td>
+            </tr>
+            </tr>
+              <td>Local: ${business.price}</td>
             </tr>
             <tr>   
                <td>Total: ${order.total}</td>

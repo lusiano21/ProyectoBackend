@@ -4,7 +4,7 @@ import {
   get,
   getById,
   create,
-  addProduct,
+  //addProduct,
   resolve,
   removeById
 } from '../../controllers/orders.js'
@@ -38,14 +38,14 @@ router.get('/order/:id', authJWTMiddleware(["user", "admin"]), async (req, res, 
   }
 })
 
-router.put('/order/:id', authJWTMiddleware("admin"), async (req, res, next) => {
+/*router.put('/order/:id', authJWTMiddleware("admin"), async (req, res, next) => {
   try {
     const order = await addProduct(req.params.id, req.body)
     res.status(200).json(order)
   } catch (error) {
     next(error)
   }
-})
+})*/
 
 router.put('/order/:id/resolve',authJWTMiddleware("admin"), async (req, res, next) => {
   try {

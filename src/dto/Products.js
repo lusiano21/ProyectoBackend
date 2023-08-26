@@ -3,12 +3,8 @@ export default class ProductsDTO {
       this.name = products.name
       this.image = products.image
       this.stock = products.stock
-      this.products = [
-        {
-            id : products.id,
-            menu: products.menu,
-            price: products.price,
-        }
-      ]
+      this.menuId = products.id
+      this.menu = products.menu
+      this.price = products.price
     }
 }

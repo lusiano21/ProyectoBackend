@@ -65,7 +65,11 @@ export const create = async (body) => {
   }
   const repeat = user.orders.map((product) => {
     if(product){
-      console.log('Existe una ordern')
+      const addOrder = {
+        products: trolley,
+        total,
+      }
+      console.log(addOrder)
     }
   })
   const order = await createOrder(newOrder)

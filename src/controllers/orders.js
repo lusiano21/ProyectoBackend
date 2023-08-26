@@ -35,11 +35,11 @@ export const create = async (body) => {
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  const products = getProductsById(productId)
+  const products =  await getProductsById(productId)
   if (!products) {
     throw new NotFoundException('Products not found')
   }
-  const trolley = productsRequest.reduce((result, item)=> {
+  const trolley = productsRequest.reduce((result, item) => {
     if(products){
       if(products.price == item.price && products.stock >= item.quantity){
         result.push({

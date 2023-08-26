@@ -34,17 +34,16 @@ export const create = async (body) => {
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  console.log('Prueba 1:',productsRequest)
-  console.log('Prueba 2:',productsRequest.id)
+  const products = "";
   const trolley = productsRequest.reduce((result, item)=> {
-    const products = getProductsById(item.id)
+    products = getProductsById(item.product)
   if (!products) {
     throw new NotFoundException('Products not found')
   }else{
       if(products.price == item.price && products.stock >= item.quantity){
         result.push({
-        product: products.id,
-        id: item.product, 
+        product: item.product,
+        id: item.id, 
         price: products.price,
         quantity: item.quantity,
       });
@@ -52,6 +51,7 @@ export const create = async (body) => {
       return result
     }
   }, [])
+  console.log("Prodocts:", products)
   console.log("Carrito:",trolley)
   const total = trolley.reduce((acc, product) => {
     return acc + product.price * product.quantity

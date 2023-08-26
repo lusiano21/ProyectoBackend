@@ -34,6 +34,8 @@ export const create = async (body) => {
   if (!user) {
     throw new NotFoundException('User not found')
   }
+  console.log('Prueba 1:',productsRequest)
+  console.log('Prueba 2:',productsRequest.id)
   const trolley = productsRequest.reduce((result, item)=> {
     const products = getProductsById(item.id)
   if (!products) {

@@ -63,8 +63,6 @@ export const create = async (body) => {
     products: trolley,
     total,
   }
-  let repeat = newOrder.find(product => product.user == user.id);
-  console.log('Repeat', repeat)
   const order = await createOrder(newOrder)
   user.orders.push(`${order.id}`)
   await updateUserById(`${user.id}`, user)

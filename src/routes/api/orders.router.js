@@ -47,7 +47,7 @@ router.get('/order/:id', authJWTMiddleware(["user", "admin"]), async (req, res, 
   }
 })*/
 
-router.put('/order/:id/resolve',authJWTMiddleware("admin"), async (req, res, next) => {
+router.put('/order/:id/purchases',authJWTMiddleware("admin"), async (req, res, next) => {
   try {
     const order = await resolve(req.params.id, req.body)
     res.status(200).json(order)

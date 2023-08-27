@@ -61,7 +61,7 @@ Metodo get: Puede traer al informacion de una orden especifica dependiendo el ro
 "admin": Cualquier Orden.
 "user": Solo puede trer tu Orden.
 
-*https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id/resolve
+*https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id/purchases
 Metodo put: Puedes cambiar el estado de la orden para confirmar la compra
 
 *https://proyectobackend-production-1746.up.railway.app/api/sessions/order/:id

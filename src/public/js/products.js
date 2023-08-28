@@ -5,7 +5,7 @@
     .then(data => {
         if(data.success){
             btnBuy.innerHTML = `
-            <a class="btn btn-outline-primary" type="button">Comprar</a>
+            <a href="#" class="btn btn-outline-primary" type="button">Comprar</a>
             `
         }
     })

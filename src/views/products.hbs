@@ -10,6 +10,9 @@
       <p class="card-text">{{this.menu}}</p>
       <p class="card-text">${{this.price}}</p>
       <div id="buttons">
+        {{#if user}}
+        <a href="#" class="btn btn-outline-primary" type="button">Comprar</a>
+        {{/if}}
       </div>
       <strong class="card-text">Disponibles: {{this.stock}}</strong>
     </div>
@@ -24,4 +27,3 @@
 {{#if nextLink}}
   <a href="{{nextLink}}" class="btn btn-outline-primary" type="button">Siguente</a>
 {{/if}}
-<script src="/static/js/products.js"></script>

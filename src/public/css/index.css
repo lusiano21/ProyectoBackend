@@ -16,6 +16,7 @@ img{
 }
 .card-business{
     width: 18rem;
+    height: 100%;
 }
 .cart-info{
     display: flex;

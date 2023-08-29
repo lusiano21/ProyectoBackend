@@ -20,7 +20,7 @@
             let item = productos.filter((el) => {
                 return el._id === ItemId
             })
-            return total + item[0].precio
+            return total + item[0].price
         }, 0)
 
     }

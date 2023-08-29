@@ -62,7 +62,7 @@ export const me = async (req, res, next) => {
 try{
   const { id } = req.user
   const user = await getUserById(id)
-  res.status(200).send({success:true, payload:user}).render('products',  console.log('Funciona'))
+  res.status(200).send({success:true, payload:user})
 } catch (error) {
     next(error)
 }

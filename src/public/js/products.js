@@ -1,17 +1,16 @@
-(function (){
-    let trolley = [];
-    let trolleyList = document.getElementById("trolley-list")
-    const btnbuy = document.getElementById("buy")
-    function addCartToTrolley(event){
-        trolley.push(event.target.getAttribute("mark"))
+let trolley = [];
+let trolleyList = document.getElementById("trolley-list")
+const btnbuy = document.getElementById("buy")
+function addCartToTrolley(event){
+    trolley.push(event.target.getAttribute("mark"))
         renderTrolley()
         Toastify({
                 text: "Se agrago al Carrito",
                 className:"info",
                 style: {
-                  background: "linear-gradient(to right, #00c1a9, #559f93)",
+                    background: "linear-gradient(to right, #00c1a9, #559f93)",
                 }
-              }).showToast();
+            }).showToast();
     }
     function calculoTotal(){
         return trolley.reduce((total, ItemId) =>{
@@ -28,22 +27,22 @@
         trolleyList.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)]
         cartWhithoudRepeatedElements.forEach((itemId) => {
-                let item = productos.filter ((producto) => {
-                        return producto.id === parseInt(itemId)
-                })
-                let quantity = trolley.reduce((total, id) => {
-                        return id === itemId ? total += 1 : total
-                }, 0)
-        let linea = document.createElement("li");
-        linea.className = "list-group-item cartToCarr "
-        linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
+            let item = productos.filter ((producto) => {
+                return producto.id === parseInt(itemId)
+            })
+            let quantity = trolley.reduce((total, id) => {
+                return id === itemId ? total += 1 : total
+            }, 0)
+            let linea = document.createElement("li");
+            linea.className = "list-group-item cartToCarr "
+            linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
                            <div class="ms-2 me-auto">
                            <div class="fw-bold">${item[0].producto}</div>
-                             ${item[0].precio}$
+                           ${item[0].precio}$
                            </div>
                            <span class="badge bg-primary rounded-pill">${quantity}</span>
                            </div>`
-        let contbutoonD = document.createElement("div")
+                           let contbutoonD = document.createElement("div")
         let buttonDelete = document.createElement("button")
         buttonDelete.className = "btn-c"
         buttonDelete.innerText = "Eliminar"
@@ -52,10 +51,11 @@
         contbutoonD.append(buttonDelete)
         linea.append(contbutoonD)
         trolleyList.append(linea)
-        })
-        valueTotalList.innerHTML = calculoTotal()+"$"
-    }
-    btnbuy.addEventListener("click",addCartToTrolley)
+    })
+    valueTotalList.innerHTML = calculoTotal()+"$"
+}
+btnbuy.addEventListener("click",addCartToTrolley)
+(function (){
 
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')

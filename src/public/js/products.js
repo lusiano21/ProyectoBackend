@@ -72,6 +72,15 @@
                     }
                 ]
             }
+            const order2 = {
+                items: item.map(items => ({
+                id: items[0].menuId,
+                title: items[0].menu,
+                price: items[0].price,
+                qty: quantity
+            })),
+            }
+            console.log('Order2',order2)
             console.log('Order',order)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
@@ -99,9 +108,9 @@
             contbutoonD.append(buttonDelete);
             contbutoonD.append(buttonBuy)
             linea.append(contbutoonD);
-            trolleyEvent.append(buttonBuy)
             trolleyList.append(linea);
         })
+        trolleyEvent.append(buttonBuy);
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
     fetch('/api/sessions/me')

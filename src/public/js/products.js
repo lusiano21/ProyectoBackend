@@ -28,9 +28,11 @@
         trolleyList.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)]
         cartWhithoudRepeatedElements.forEach((itemId) => {
+            console.log('cartWhithoudRepeatedElements',cartWhithoudRepeatedElements)
             let item = productos.filter((producto) => {
                 return producto.id === parseInt(itemId)
             })
+            console.log('item', item)
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
@@ -60,7 +62,7 @@
         .then(res => res.json())
         .then(data => {
             productos = data.payload 
-            console.log(productos)
+            console.log('productos',productos)
             data.payload.forEach(element => {
                 let business = document.createElement("div");
                 business.className = "card";

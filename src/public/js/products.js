@@ -59,6 +59,7 @@
     fetch('/')
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             data.payload.forEach(element => {
                 let business = document.createElement("div");
                 business.className = "card";

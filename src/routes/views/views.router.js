@@ -15,7 +15,7 @@ router.get('/', async(req, res)=> {
     options.sort = { grade: sort }
   }
   const result = await BusinessModel.paginate({}, options)
-  res.render('products', CommunsUtil.buidResponse({ ...result, sort }))
+  res.send(CommunsUtil.buidResponse({ ...result, sort }))
 });
 router.get('/create', async(req, res)=> {
   res.render('create',{style:'index.css'})

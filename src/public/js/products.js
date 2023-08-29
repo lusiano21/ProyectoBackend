@@ -15,7 +15,7 @@
     }
     function calculoTotal() {
         return trolley.reduce((total, ItemId) => {
-            let item = productos.filter((el) => {
+            let item = data.payload.filter((el) => {
                 return el.id === parseInt(ItemId)
             })
             return total + item[0].precio
@@ -28,7 +28,7 @@
         trolleyList.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)]
         cartWhithoudRepeatedElements.forEach((itemId) => {
-            let item = productos.filter((producto) => {
+            let item = data.payload.filter((producto) => {
                 return producto.id === parseInt(itemId)
             })
             let quantity = trolley.reduce((total, id) => {
@@ -38,8 +38,8 @@
             linea.className = "list-group-item cartToCarr "
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
                            <div class="ms-2 me-auto">
-                           <div class="fw-bold">${item[0].producto}</div>
-                           ${item[0].precio}$
+                           <div class="fw-bold">${item[0].menu}</div>
+                           ${item[0].price}$
                            </div>
                            <span class="badge bg-primary rounded-pill">${quantity}</span>
                            </div>`
@@ -48,7 +48,7 @@
             buttonDelete.className = "btn-c"
             buttonDelete.innerText = "Eliminar"
             buttonDelete.dataset.item = itemId
-            buttonDelete.addEventListener("click", deleteCart)
+            buttonDelete.addEventListener("click", () => console.log('deleteCart'))
             contbutoonD.append(buttonDelete)
             linea.append(contbutoonD)
             trolleyList.append(linea)
@@ -64,7 +64,7 @@
                 business.className = "card";
                 let businessName = document.createElement("h2");
                 businessName.innerHTML = `${element.name}`;
-                business.innerHTML =  `<img src="${element.img}" class="card-img-top" alt="restaurante">`
+                business.innerHTML =  `<img src="${element.image}" class="card-img-top" alt="restaurante">`
                 let card = document.createElement("div");
                 card.className = "card-body";
                 let menu = document.createElement("h3");

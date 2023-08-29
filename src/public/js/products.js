@@ -1,9 +1,11 @@
 (function () {
     let trolley = [];
+    let productos = []
     const trolleyList = document.getElementById("trolley-list")
     const productsList = document.getElementById("products-list")
     function addCartToTrolley(event) {
         trolley.push(event.target.getAttribute("mark"))
+        console.log(event.target.getAttribute("mark"))
         renderTrolley()
         Toastify({
             text: "Se agrago al Carrito",
@@ -26,7 +28,8 @@
         //saveCartToStorage()
         //saveTrolley()
         trolleyList.innerHTML = ""
-        let cartWhithoudRepeatedElements = [...new Set(trolley)]
+        let cartWhithoudRepeatedElements = [...new Set(trolley)];
+        console.log('trolley',trolley)
         cartWhithoudRepeatedElements.forEach((itemId) => {
             console.log('cartWhithoudRepeatedElements',cartWhithoudRepeatedElements)
             let item = productos.filter((producto) => {
@@ -57,7 +60,7 @@
         })
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
-    productos = []
+    
     fetch('/')
         .then(res => res.json())
         .then(data => {
@@ -83,10 +86,10 @@
                 let infocardBotton = document.createElement("button");
                 infocardBotton.className = "btn btn-outline-info"
                 infocardBotton.innerText = "Ver"
-                infocardBotton.setAttribute("info", element.id)
+                infocardBotton.setAttribute("info", element._id)
                 cardBotton.innerText = "Comprar"
                 cardBotton.className = "btn btn-outline-primary"
-                cardBotton.setAttribute("mark", element.id)
+                cardBotton.setAttribute("mark", element._id)
                 cardBotton.addEventListener("click", addCartToTrolley)
                 blockBotton.append(cardBotton)
                 blockBotton.append(infocardBotton)

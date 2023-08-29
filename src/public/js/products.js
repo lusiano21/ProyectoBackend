@@ -74,9 +74,9 @@
             }
             const order2 = {
                 items: item.map(items => ({
-                id: items[0].menuId,
-                title: items[0].menu,
-                price: items[0].price,
+                id: items.menuId,
+                title: items.menu,
+                price: items.price,
                 qty: quantity
             })),
             }

@@ -1,11 +1,11 @@
 (function () {
     let trolley = [];
     let productos = []
-    const trolleyList = document.getElementById("trolley-list")
-    const productsList = document.getElementById("products-list")
+    const trolleyList = document.getElementById("trolley-list");
+    const productsList = document.getElementById("products-list");
+    const valueTotalList = document.getElementById("totalvalue");
     function addCartToTrolley(event) {
         trolley.push(event.target.getAttribute("mark"))
-        console.log(event.target.getAttribute("mark"))
         renderTrolley()
         Toastify({
             text: "Se agrago al Carrito",
@@ -29,13 +29,10 @@
         //saveTrolley()
         trolleyList.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)];
-        console.log('trolley',trolley)
         cartWhithoudRepeatedElements.forEach((itemId) => {
-            console.log('cartWhithoudRepeatedElements',cartWhithoudRepeatedElements)
             let item = productos.filter((producto) => {
                 return producto._id === itemId
             })
-            console.log('item', item)
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
@@ -50,10 +47,10 @@
                            </div>`
             let contbutoonD = document.createElement("div")
             let buttonDelete = document.createElement("button")
-            buttonDelete.className = "btn-c"
+            buttonDelete.className = "btn btn-outline-info"
             buttonDelete.innerText = "Eliminar"
             buttonDelete.dataset.item = itemId
-            buttonDelete.addEventListener("click", () => console.log('deleteCart'))
+            buttonDelete.addEventListener("click", deleteCart)
             contbutoonD.append(buttonDelete)
             linea.append(contbutoonD)
             trolleyList.append(linea)
@@ -65,7 +62,6 @@
         .then(res => res.json())
         .then(data => {
             productos = data.payload 
-            console.log('productos',productos)
             data.payload.forEach(element => {
                 let business = document.createElement("div");
                 business.className = "card";

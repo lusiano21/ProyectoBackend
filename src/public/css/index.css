@@ -14,7 +14,7 @@ img{
     flex-direction: row;
     justify-content: space-evenly;
 }
-.card{
+.card-business{
     width: 18rem;
 }
 .cart-info{

@@ -24,6 +24,13 @@
         }, 0)
 
     }
+    function deleteCart(event){
+        let id = event.target.dataset.item
+        trolley = trolley.filter((el) => {
+                return el != id
+        })
+        renderTrolley()
+    }
     function renderTrolley() {
         //saveCartToStorage()
         //saveTrolley()
@@ -57,14 +64,13 @@
         })
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
-    
     fetch('/')
         .then(res => res.json())
         .then(data => {
             productos = data.payload 
             data.payload.forEach(element => {
                 let business = document.createElement("div");
-                business.className = "card";
+                business.className = "card card-bussiness";
                 let businessName = document.createElement("h2");
                 businessName.innerHTML = `${element.name}`;
                 business.innerHTML =  `<img src="${element.image}" class="card-img-top" alt="restaurante">`

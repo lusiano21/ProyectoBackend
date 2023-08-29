@@ -1,6 +1,7 @@
 (function () {
     let trolley = [];
-    let productos = []
+    let productos = [];
+    const authorizeBuy = false;
     const trolleyList = document.getElementById("trolley-list");
     const productsList = document.getElementById("products-list");
     const valueTotalList = document.getElementById("totalvalue");
@@ -43,23 +44,6 @@
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
-            let buttonBuy;
-            fetch('/api/sessions/me')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        if (data.payload.rol) {
-                            buttonBuy = document.createElement("button");
-                            buttonBuy.className = "btn btn-outline-info";
-                            buttonBuy.innerText = "Comprar"
-                            buttonDelete.addEventListener("click", () => console.log('Compraste'));
-                        }
-                    } else {
-                        trolleyList.innerHTML = `
-            <p>No puedes realizar compras hasta que estes registrado</p>
-            `
-                    }
-                })
             let linea = document.createElement("li");
             linea.className = "list-group-item cartToCarr "
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
@@ -71,6 +55,16 @@
                            </div>`
             let contbutoonD = document.createElement("div");
             let buttonDelete = document.createElement("button");
+            let buttonBuy = document.createElement("button");
+            if(authorizeBuy){
+                buttonBuy.className = "btn btn-outline-info";
+                buttonBuy.innerText = "Comprar"
+                buttonDelete.addEventListener("click", () => console.log('Compraste'));
+            }else{
+                buttonBuy.className = "btn btn-outline-info";
+                buttonBuy.innerText = "Comprar"
+                buttonDelete.addEventListener("click", () => console.log('No puedes Comprar'));
+            }
             buttonDelete.className = "btn btn-outline-info";
             buttonDelete.innerText = "Eliminar";
             buttonDelete.dataset.item = itemId;
@@ -82,6 +76,17 @@
         })
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
+    fetch('/api/sessions/me')
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            if (data.payload.rol) {
+                authorizeBuy = true 
+            }
+        } else {
+            authorizeBuy = false
+        }
+    })
     fetch('/')
         .then(res => res.json())
         .then(data => {

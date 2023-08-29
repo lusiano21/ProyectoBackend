@@ -24,10 +24,10 @@
         }, 0)
 
     }
-    function deleteCart(event){
+    function deleteCart(event) {
         let id = event.target.dataset.item
         trolley = trolley.filter((el) => {
-                return el != id
+            return el != id
         })
         renderTrolley()
     }
@@ -43,6 +43,23 @@
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
+            let buttonBuy;
+            fetch('/api/sessions/me')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        if (data.payload.rol) {
+                            buttonBuy = document.createElement("button");
+                            buttonBuy.className = "btn btn-outline-info";
+                            buttonBuy.innerText = "Comprar"
+                            buttonDelete.addEventListener("click", () => console.log('Compraste'));
+                        }
+                    } else {
+                        trolleyList.innerHTML = `
+            <p>No puedes realizar compras hasta que estes registrado</p>
+            `
+                    }
+                })
             let linea = document.createElement("li");
             linea.className = "list-group-item cartToCarr "
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
@@ -52,43 +69,29 @@
                            </div>
                            <span class="badge bg-primary rounded-pill">${quantity}</span>
                            </div>`
-            let contbutoonD = document.createElement("div")
-            let buttonDelete = document.createElement("button")
-            buttonDelete.className = "btn btn-outline-info"
-            buttonDelete.innerText = "Eliminar"
-            buttonDelete.dataset.item = itemId
-            buttonDelete.addEventListener("click", deleteCart)
-            contbutoonD.append(buttonDelete)
-            linea.append(contbutoonD)
-            trolleyList.append(linea)
+            let contbutoonD = document.createElement("div");
+            let buttonDelete = document.createElement("button");
+            buttonDelete.className = "btn btn-outline-info";
+            buttonDelete.innerText = "Eliminar";
+            buttonDelete.dataset.item = itemId;
+            buttonDelete.addEventListener("click", deleteCart);
+            contbutoonD.append(buttonDelete);
+            contbutoonD.append(buttonBuy)
+            linea.append(contbutoonD);
+            trolleyList.append(linea);
         })
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
-    fetch('/api/sessions/me')
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            if(data.payload.rol){
-                trolleyList.innerHTML = `
-                <a href="#" class="btn btn-outline-primary" type="button">Comprar</a>
-                `
-                }
-        } else {
-            trolleyList.innerHTML = `
-            <p>No puedes realizar compras hasta que estes registrado</p>
-            `
-        }
-    })
     fetch('/')
         .then(res => res.json())
         .then(data => {
-            productos = data.payload 
+            productos = data.payload
             data.payload.forEach(element => {
                 let business = document.createElement("div");
                 business.className = "card card-bussiness";
                 let businessName = document.createElement("h2");
                 businessName.innerHTML = `${element.name}`;
-                business.innerHTML =  `<img src="${element.image}" class="card-img-top" alt="restaurante">`
+                business.innerHTML = `<img src="${element.image}" class="card-img-top" alt="restaurante">`
                 let card = document.createElement("div");
                 card.className = "card-body";
                 let menu = document.createElement("h3");

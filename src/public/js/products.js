@@ -1,7 +1,7 @@
 (function () {
     let trolley = [];
     let productos = [];
-    let authorizeBuy = false;
+    let authorizeBuy;
     const trolleyList = document.getElementById("trolley-list");
     const productsList = document.getElementById("products-list");
     const valueTotalList = document.getElementById("totalvalue");
@@ -25,10 +25,10 @@
         }, 0)
 
     }
-    function buyCart(eveny){
-        console.log('Compraste')
+    function buyCart(order) {
+        console.log('Comprar', order)
     }
-    function buyNoCart(eveny){
+    function buyNoCart() {
         console.log('No puedes Comprar')
     }
     function deleteCart(event) {
@@ -50,6 +50,18 @@
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
+            const order = {
+                user:`${authorizeBuy._id}`,
+                product:`${item._id}`,
+                products: [
+                    {
+                        id: item.menuId,
+                        price: item.price,
+                        quantity: quantity
+                    }
+                ]
+            }
+            console.log(order)
             let linea = document.createElement("li");
             linea.className = "list-group-item cartToCarr "
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
@@ -64,9 +76,9 @@
             let buttonBuy = document.createElement("button");
             buttonBuy.className = "btn btn-outline-info";
             buttonBuy.innerText = "Comprar"
-            if(authorizeBuy){
-                buttonBuy.addEventListener("click", buyCart);
-            }else{
+            if (authorizeBuy) {
+                buttonBuy.addEventListener("click", () => buyCart(order));
+            } else {
                 buttonBuy.addEventListener("click", buyNoCart);
             }
             buttonDelete.className = "btn btn-outline-info";
@@ -81,16 +93,15 @@
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
     fetch('/api/sessions/me')
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            if (data.payload.rol) {
-                authorizeBuy = true 
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                if (data.payload) {
+                    authorizeBuy = data.payload
+                }
             }
-        } else {
-            authorizeBuy = false
-        }
-    })
+        })
+        .catch(authorizeBuy = false)
     fetch('/')
         .then(res => res.json())
         .then(data => {

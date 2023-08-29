@@ -1,7 +1,6 @@
 (function() {
     const formLogin = document.getElementById('form-login');
     const inputEmail = document.getElementById('email');
-    const notification = document.getElementById('notification')
     inputEmail.onchange = () => {};
     formLogin.addEventListener('submit', async (event) => {
       event.preventDefault();

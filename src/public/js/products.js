@@ -1,33 +1,34 @@
-let trolley = [];
-let trolleyList = document.getElementById("trolley-list")
-let btnbuy = document.getElementById("buy")
-function addCartToTrolley(event){
-    trolley.push(event.target.getAttribute("mark"))
+(function () {
+    let trolley = [];
+    let trolleyList = document.getElementById("trolley-list")
+    const btnbuy = document.getElementById("buy")
+    function addCartToTrolley(event) {
+        trolley.push(event.target.getAttribute("mark"))
         renderTrolley()
         Toastify({
-                text: "Se agrago al Carrito",
-                className:"info",
-                style: {
-                    background: "linear-gradient(to right, #00c1a9, #559f93)",
-                }
-            }).showToast();
+            text: "Se agrago al Carrito",
+            className: "info",
+            style: {
+                background: "linear-gradient(to right, #00c1a9, #559f93)",
+            }
+        }).showToast();
     }
-    function calculoTotal(){
-        return trolley.reduce((total, ItemId) =>{
+    function calculoTotal() {
+        return trolley.reduce((total, ItemId) => {
             let item = productos.filter((el) => {
-                return el.id === parseInt(ItemId) 
-            })    
+                return el.id === parseInt(ItemId)
+            })
             return total + item[0].precio
-        }, 0) 
-        
+        }, 0)
+
     }
-    function renderTrolley(){
+    function renderTrolley() {
         //saveCartToStorage()
         //saveTrolley()
         trolleyList.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)]
         cartWhithoudRepeatedElements.forEach((itemId) => {
-            let item = productos.filter ((producto) => {
+            let item = productos.filter((producto) => {
                 return producto.id === parseInt(itemId)
             })
             let quantity = trolley.reduce((total, id) => {
@@ -42,19 +43,20 @@ function addCartToTrolley(event){
                            </div>
                            <span class="badge bg-primary rounded-pill">${quantity}</span>
                            </div>`
-                           let contbutoonD = document.createElement("div")
-        let buttonDelete = document.createElement("button")
-        buttonDelete.className = "btn-c"
-        buttonDelete.innerText = "Eliminar"
-        buttonDelete.dataset.item = itemId
-        buttonDelete.addEventListener("click", deleteCart)
-        contbutoonD.append(buttonDelete)
-        linea.append(contbutoonD)
-        trolleyList.append(linea)
-    })
-    valueTotalList.innerHTML = calculoTotal()+"$"
-}
-btnbuy.addEventListener("click",() => {console.log('Funciona')})
+            let contbutoonD = document.createElement("div")
+            let buttonDelete = document.createElement("button")
+            buttonDelete.className = "btn-c"
+            buttonDelete.innerText = "Eliminar"
+            buttonDelete.dataset.item = itemId
+            buttonDelete.addEventListener("click", deleteCart)
+            contbutoonD.append(buttonDelete)
+            linea.append(contbutoonD)
+            trolleyList.append(linea)
+        })
+        valueTotalList.innerHTML = calculoTotal() + "$"
+    }
+    btnbuy.addEventListener("click", console.log('Funciona'))
+})();
 /*
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')

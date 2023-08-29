@@ -25,6 +25,12 @@
         }, 0)
 
     }
+    function buyCart(eveny){
+        console.log('Compraste')
+    }
+    function buyNoCart(eveny){
+        console.log('No puedes Comprar')
+    }
     function deleteCart(event) {
         let id = event.target.dataset.item
         trolley = trolley.filter((el) => {
@@ -56,14 +62,12 @@
             let contbutoonD = document.createElement("div");
             let buttonDelete = document.createElement("button");
             let buttonBuy = document.createElement("button");
+            buttonBuy.className = "btn btn-outline-info";
+            buttonBuy.innerText = "Comprar"
             if(authorizeBuy){
-                buttonBuy.className = "btn btn-outline-info";
-                buttonBuy.innerText = "Comprar"
-                buttonDelete.addEventListener("click", () => console.log('Compraste'));
+                buttonDelete.addEventListener("click", buyCart);
             }else{
-                buttonBuy.className = "btn btn-outline-info";
-                buttonBuy.innerText = "Comprar"
-                buttonDelete.addEventListener("click", () => console.log('No puedes Comprar'));
+                buttonDelete.addEventListener("click", buyNoCart);
             }
             buttonDelete.className = "btn btn-outline-info";
             buttonDelete.innerText = "Eliminar";

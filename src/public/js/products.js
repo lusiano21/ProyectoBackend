@@ -56,6 +56,7 @@
         valueTotalList.innerHTML = calculoTotal()+"$"
     }
     btnbuy.addEventListener("click",addCartToTrolley)
+
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')
     .then(res => res.json())

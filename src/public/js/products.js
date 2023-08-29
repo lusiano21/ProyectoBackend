@@ -66,25 +66,33 @@
                 let businessName = document.createElement("h2");
                 businessName.innerHTML = `${element.name}`;
                 let card = document.createElement("div");
-                card.className = "card";
-                for (const product of element.products) {
-                    let menu = document.createElement("h3");
-                    menu.innerHTML = `Menu ${product.id}:`;
-                    let name_product = document.createElement("h4");
-                    name_product.innerHTML = `${product.name}`
-                    let price_product = document.createElement("h4");
-                    price_product.innerHTML = `Precio: $${product.price}`
-
-                    card.append(menu);
-                    card.append(name_product);
-                    card.append(price_product)
-                }
+                card.className = "card-body";
+                let menu = document.createElement("h3");
+                menu.innerHTML = `Menu ${element.MenuId}:`;
+                let name_product = document.createElement("h4");
+                name_product.innerHTML = `${element.menu}`
+                let price_product = document.createElement("h4");
+                price_product.innerHTML = `Precio: $${element.price}`
+                let blockBotton = document.createElement("div")
+                blockBotton.className = " d-flex justify-content-between"
+                let cardBotton = document.createElement("button");
+                let infocardBotton = document.createElement("button");
+                infocardBotton.innerText = "Ver"
+                infocardBotton.setAttribute("info", element.id)
+                cardBotton.innerText = "Comprar"
+                cardBotton.setAttribute("mark", element.id)
+                cardBotton.addEventListener("click", () => console.log('Funciona el boton'))
+                blockBotton.append(cardBotton)
+                blockBotton.append(infocardBotton)
+                card.append(blockBotton)
+                card.append(menu);
+                card.append(name_product);
+                card.append(price_product)
                 business.append(businessName)
                 business.append(card)
                 productsList.append(business)
             });
         })
-    btnbuy.addEventListener("click", addCartToTrolley)
 })();
 /*
     const btnBuy = document.getElementById('buttons')

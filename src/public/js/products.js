@@ -1,7 +1,7 @@
 (function () {
     let trolley = [];
     let productos = [];
-    const authorizeBuy = false;
+    let authorizeBuy = false;
     const trolleyList = document.getElementById("trolley-list");
     const productsList = document.getElementById("products-list");
     const valueTotalList = document.getElementById("totalvalue");

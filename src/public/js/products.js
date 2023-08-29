@@ -17,8 +17,8 @@
     }
     function calculoTotal() {
         return trolley.reduce((total, ItemId) => {
-            let item = data.payload.filter((el) => {
-                return el.id === parseInt(ItemId)
+            let item = productos.filter((el) => {
+                return el._id === ItemId
             })
             return total + item[0].precio
         }, 0)

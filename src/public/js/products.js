@@ -47,12 +47,13 @@
             let item = productos.filter((producto) => {
                 return producto._id === itemId
             })
+            console.log('Item', item)
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
             const order = {
                 user:`${authorizeBuy._id}`,
-                product:`${item._id}`,
+                product:`${item.id}`,
                 products: [
                     {
                         id: item.menuId,
@@ -61,7 +62,7 @@
                     }
                 ]
             }
-            console.log(order)
+            console.log('Order',order)
             let linea = document.createElement("li");
             linea.className = "list-group-item cartToCarr "
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">

@@ -10,12 +10,15 @@
       <p class="card-text">{{this.menu}}</p>
       <p class="card-text">${{this.price}}</p>
       <div id="buttons">
-        <button class="btn btn-outline-primary" mark="{{this.id}}">Comprar</button>
+        <button id="buy" class="btn btn-outline-primary" mark="{{this.id}}">Comprar</button>
       </div>
       <strong class="card-text">Disponibles: {{this.stock}}</strong>
     </div>
   </div>
 {{/each}}
+</article>
+<article>
+  <div class="trolley-list"></div>
 </article>
 </section>
 <p>Página actual: {{page}}</p>

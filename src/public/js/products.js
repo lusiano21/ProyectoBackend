@@ -33,7 +33,7 @@
         cartWhithoudRepeatedElements.forEach((itemId) => {
             console.log('cartWhithoudRepeatedElements',cartWhithoudRepeatedElements)
             let item = productos.filter((producto) => {
-                return producto.id === parseInt(itemId)
+                return producto._id === parseInt(itemId)
             })
             console.log('item', item)
             let quantity = trolley.reduce((total, id) => {

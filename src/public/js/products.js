@@ -65,9 +65,9 @@
             buttonBuy.className = "btn btn-outline-info";
             buttonBuy.innerText = "Comprar"
             if(authorizeBuy){
-                buttonDelete.addEventListener("click", buyCart);
+                buttonBuy.addEventListener("click", buyCart);
             }else{
-                buttonDelete.addEventListener("click", buyNoCart);
+                buttonBuy.addEventListener("click", buyNoCart);
             }
             buttonDelete.className = "btn btn-outline-info";
             buttonDelete.innerText = "Eliminar";

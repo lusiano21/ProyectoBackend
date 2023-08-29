@@ -1,4 +1,4 @@
-
+(function () {
     let trolley = [];
     let trolleyList = document.getElementById("trolley-list")
     const btnbuy = document.getElementById("buy")
@@ -55,8 +55,8 @@
         })
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
-    btnbuy.addEventListener("click", console.log('Funciona'))
-
+    btnbuy.addEventListener("click", () => console.log('Funciona'))
+})();
 /*
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')

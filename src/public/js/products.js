@@ -1,5 +1,6 @@
 (function () {
     let trolley = [];
+    const order = [];
     let productos = [];
     let authorizeBuy;
     const trolleyList = document.getElementById("trolley-list");
@@ -51,7 +52,7 @@
         //saveCartToStorage()
         //saveTrolley()
         trolleyList.innerHTML = "";
-        trolleyEvent.innerHTML = ""
+        trolleyEvent.innerHTML = "";
         let cartWhithoudRepeatedElements = [...new Set(trolley)];
         cartWhithoudRepeatedElements.forEach((itemId) => {
             let item = productos.filter((producto) => {
@@ -61,7 +62,7 @@
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
-            const order = {
+            const order2 = {
                 user:`${authorizeBuy._id}`,
                 product:`${item[0]._id}`,
                 products: [
@@ -72,16 +73,16 @@
                     }
                 ]
             }
-            const order2 = {
+            order.push ({
                 items: item.map(items => ({
                 id: items.menuId,
                 title: items.menu,
                 price: items.price,
                 qty: quantity
             })),
-            }
-            console.log('Order2',order2)
-            console.log('Order',order)
+            })
+            console.log('order', order)
+            console.log('order2', order2)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
@@ -93,14 +94,6 @@
                            </div>`
             let contbutoonD = document.createElement("div");
             let buttonDelete = document.createElement("button");
-            let buttonBuy = document.createElement("button");
-            buttonBuy.className = "btn btn-outline-info";
-            buttonBuy.innerText = "Comprar"
-            if (authorizeBuy) {
-                buttonBuy.addEventListener("click", () => buyCart(order));
-            } else {
-                buttonBuy.addEventListener("click", buyNoCart);
-            }
             buttonDelete.className = "btn btn-outline-info";
             buttonDelete.innerText = "Eliminar";
             buttonDelete.dataset.item = itemId;
@@ -110,6 +103,14 @@
             linea.append(contbutoonD);
             trolleyList.append(linea);
         })
+            let buttonBuy = document.createElement("button");
+            buttonBuy.className = "btn btn-outline-info";
+            buttonBuy.innerText = "Comprar"
+            if (authorizeBuy) {
+                buttonBuy.addEventListener("click", () => buyCart);
+            } else {
+                buttonBuy.addEventListener("click", buyNoCart);
+            }
         trolleyEvent.append(buttonBuy);
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
@@ -164,22 +165,3 @@
             });
         })
 })();
-/*
-    const btnBuy = document.getElementById('buttons')
-    fetch('/api/sessions/me')
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            if(data.payload.rol){
-                btnBuy.innerHTML = `
-                <a href="#" class="btn btn-outline-primary" type="button">Comprar</a>
-                `
-                }
-        } else {
-            btnBuy.innerHTML = `
-            <a href="#" class="btn btn-outline-primary" type="button">Ver</a>
-            `
-        }
-    })
-    });
-  })*/

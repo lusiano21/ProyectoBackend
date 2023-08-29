@@ -2,7 +2,6 @@
     let trolley = [];
     const trolleyList = document.getElementById("trolley-list")
     const productsList = document.getElementById("products-list")
-    const btnbuy = document.getElementById("buy")
     function addCartToTrolley(event) {
         trolley.push(event.target.getAttribute("mark"))
         renderTrolley()

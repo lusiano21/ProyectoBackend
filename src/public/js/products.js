@@ -89,6 +89,7 @@
             contbutoonD.append(buttonDelete);
             contbutoonD.append(buttonBuy)
             linea.append(contbutoonD);
+            trolleyList.append(buttonBuy)
             trolleyList.append(linea);
         })
         valueTotalList.innerHTML = calculoTotal() + "$"

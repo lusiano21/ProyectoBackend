@@ -54,7 +54,7 @@ function addCartToTrolley(event){
     })
     valueTotalList.innerHTML = calculoTotal()+"$"
 }
-btnbuy.addEventListener("click", console.log('Funciona'))
+btnbuy.addEventListener("click",() => {console.log('Funciona')})
 (function (){
 
     const btnBuy = document.getElementById('buttons')

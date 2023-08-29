@@ -64,10 +64,11 @@
                 business.className = "card";
                 let businessName = document.createElement("h2");
                 businessName.innerHTML = `${element.name}`;
+                business.innerHTML =  `<img src="${element.img}" class="card-img-top" alt="restaurante">`
                 let card = document.createElement("div");
                 card.className = "card-body";
                 let menu = document.createElement("h3");
-                menu.innerHTML = `Menu ${element.MenuId}:`;
+                menu.innerHTML = `Menu ${element.menuId}:`;
                 let name_product = document.createElement("h4");
                 name_product.innerHTML = `${element.menu}`
                 let price_product = document.createElement("h4");
@@ -76,17 +77,19 @@
                 blockBotton.className = " d-flex justify-content-between"
                 let cardBotton = document.createElement("button");
                 let infocardBotton = document.createElement("button");
+                infocardBotton.className = "btn btn-outline-info"
                 infocardBotton.innerText = "Ver"
                 infocardBotton.setAttribute("info", element.id)
                 cardBotton.innerText = "Comprar"
+                cardBotton.className = "btn btn-outline-primary"
                 cardBotton.setAttribute("mark", element.id)
-                cardBotton.addEventListener("click", () => console.log('Funciona el boton'))
+                cardBotton.addEventListener("click", addCartToTrolley)
                 blockBotton.append(cardBotton)
                 blockBotton.append(infocardBotton)
-                card.append(blockBotton)
                 card.append(menu);
                 card.append(name_product);
                 card.append(price_product)
+                card.append(blockBotton)
                 business.append(businessName)
                 business.append(card)
                 productsList.append(business)

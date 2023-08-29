@@ -1,7 +1,7 @@
 <h1>Productos</h1>
 <section>
-<article class="d-flex justify-content-around flex-wrap">
-{{#each payload}}
+<article id="products-list" class="d-flex justify-content-around flex-wrap">
+<!--{{#each payload}}
   <div class="card" style="width:18rem;">
     <img src="{{this.image}}" class="card-img-top" alt="restaurante">
     <div class="card-body d-flex flex-column justify-content-end">
@@ -15,10 +15,10 @@
       <strong class="card-text">Disponibles: {{this.stock}}</strong>
     </div>
   </div>
-{{/each}}
+{{/each}}-->
 </article>
 <article>
-  <div class="trolley-list"></div>
+  <div id="trolley-list"></div>
 </article>
 </section>
 <p>Página actual: {{page}}</p>

@@ -1,6 +1,6 @@
 let trolley = [];
 let trolleyList = document.getElementById("trolley-list")
-const btnbuy = document.getElementById("buy")
+let btnbuy = document.getElementById("buy")
 function addCartToTrolley(event){
     trolley.push(event.target.getAttribute("mark"))
         renderTrolley()
@@ -54,7 +54,7 @@ function addCartToTrolley(event){
     })
     valueTotalList.innerHTML = calculoTotal()+"$"
 }
-btnbuy.addEventListener("click",() => console.log('Funciona'))
+btnbuy.addEventListener("click",() => {console.log('Funciona')})
 /*
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')

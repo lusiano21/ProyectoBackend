@@ -27,15 +27,15 @@
 
     }
     function buyCart(order) {
-        fetch('/api/sessions/order'),{
+        fetch('/api/sessions/order',{
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(order),
-        }
-        .then(res => res.json())
-        .then(data => console.log('data',data))
+        })
+        .then((res) => res.json())
+        .then((data) => console.log('data',data))
     }
     function buyNoCart() {
         console.log('No puedes Comprar')

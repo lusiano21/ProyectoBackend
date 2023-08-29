@@ -53,11 +53,11 @@
             }, 0)
             const order = {
                 user:`${authorizeBuy._id}`,
-                product:`${item.id}`,
+                product:`${item[0]._id}`,
                 products: [
                     {
-                        id: item.menuId,
-                        price: item.price,
+                        id: item[0].menuId,
+                        price: item[0].price,
                         quantity: quantity
                     }
                 ]

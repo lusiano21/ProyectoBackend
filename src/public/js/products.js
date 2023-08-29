@@ -50,7 +50,8 @@
     function renderTrolley() {
         //saveCartToStorage()
         //saveTrolley()
-        trolleyList.innerHTML = ""
+        trolleyList.innerHTML = "";
+        trolleyEvent.innerHTML = ""
         let cartWhithoudRepeatedElements = [...new Set(trolley)];
         cartWhithoudRepeatedElements.forEach((itemId) => {
             let item = productos.filter((producto) => {
@@ -73,7 +74,7 @@
             }
             console.log('Order',order)
             let linea = document.createElement("li");
-            linea.className = "list-group-item cartToCarr "
+            linea.className = "list-group-item"
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">
                            <div class="ms-2 me-auto">
                            <div class="fw-bold">${item[0].menu}</div>

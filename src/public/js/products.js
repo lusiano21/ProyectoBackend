@@ -54,9 +54,8 @@ function addCartToTrolley(event){
     })
     valueTotalList.innerHTML = calculoTotal()+"$"
 }
-btnbuy.addEventListener("click",() => {console.log('Funciona')})
-(function (){
-
+btnbuy.addEventListener("click",() => console.log('Funciona'))
+/*
     const btnBuy = document.getElementById('buttons')
     fetch('/api/sessions/me')
     .then(res => res.json())
@@ -72,5 +71,4 @@ btnbuy.addEventListener("click",() => {console.log('Funciona')})
             <a href="#" class="btn btn-outline-primary" type="button">Ver</a>
             `
         }
-    })
-})();
+    })*/

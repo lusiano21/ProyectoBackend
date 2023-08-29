@@ -3,6 +3,7 @@
     let productos = [];
     let authorizeBuy;
     const trolleyList = document.getElementById("trolley-list");
+    const trolleyEvent = document.getElementById("trolley-event");
     const productsList = document.getElementById("products-list");
     const valueTotalList = document.getElementById("totalvalue");
     function addCartToTrolley(event) {
@@ -26,7 +27,15 @@
 
     }
     function buyCart(order) {
-        console.log('Comprar', order)
+        fetch('/api/sessions/order'),{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order),
+        }
+        .then(res => res.json())
+        .then(data => console.log('data',data))
     }
     function buyNoCart() {
         console.log('No puedes Comprar')
@@ -89,7 +98,7 @@
             contbutoonD.append(buttonDelete);
             contbutoonD.append(buttonBuy)
             linea.append(contbutoonD);
-            trolleyList.append(buttonBuy)
+            trolleyEvent.append(buttonBuy)
             trolleyList.append(linea);
         })
         valueTotalList.innerHTML = calculoTotal() + "$"

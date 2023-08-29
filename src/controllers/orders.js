@@ -31,6 +31,7 @@ export const create = async (body) => {
     product: productId,
     products: productsRequest,
   } = body
+  console.log('Enviado desde El Front',userId,productId,productsRequest)
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('User not found')

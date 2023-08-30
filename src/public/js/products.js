@@ -73,8 +73,8 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
-                let repeat = order[0].productos.find(product => product._id === trolley);
-                console.log(repeat)
+                let repeat = order[0].products.find(product => product.product === trolley);
+                console.log('Repeat', repeat)
                 order[0].products.push({
                     product: item[0]._id,
                     id: item[0].menuId,

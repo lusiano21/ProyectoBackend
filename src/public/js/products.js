@@ -73,14 +73,14 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
-                /*order.products.push({
+                order[0].products.push({
                     id: item[0].menuId,
                     price: item[0].price,
                     quantity: quantity
-                })*/
-                console.log('order', order.products)
-                console.log('order con 0', order[0].products)
+                })
             }
+            console.log('order', order[0].user)
+            console.log('order con 0', order[0].products)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">

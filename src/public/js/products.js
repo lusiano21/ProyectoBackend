@@ -23,7 +23,7 @@
             buttonBuy.className = "btn btn-outline-info";
             buttonBuy.innerText = "Comprar"
             if (authorizeBuy) {
-                buttonBuy.addEventListener("click", buyCart(order));
+                buttonBuy.addEventListener("click", () => buyCart(order));
             } else {
                 buttonBuy.addEventListener("click", buyNoCart);
             }
@@ -49,7 +49,7 @@
         })
             .then((res) => res.json())
             .then((data) => console.log('data', data))
-    }
+            }
     function buyNoCart() {
         console.log('No puedes Comprar')
     }
@@ -78,9 +78,9 @@
                     price: item[0].price,
                     quantity: quantity
                 })*/
-                console.log('order', order)
+                console.log('order', order.products)
+                console.log('order con 0', order[0].products)
             }
-            console.log('order', order)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">

@@ -74,10 +74,11 @@
             if(authorizeBuy){
                 let prueba = trolley.map(obj => {return {id:obj}})
                 let repeat = order[0].products.find(product => {
-                    product.product === trolley
-                console.log('Products',product.product);
-                console.log('Trolley',trolley);       
-                console.log('Prueba',prueba);            
+                    product.product === prueba.id
+                console.log('Products',product.product);   
+                console.log('Prueba',prueba);  
+                console.log('Pruebacon el id',prueba.id);
+                console.log('Prueba con el 0',prueba[0].id);                        
                 });
                 console.log('Repeat', repeat)
                 order[0].products.push({

@@ -1,6 +1,11 @@
 (function () {
     let trolley = [];
-    const order = [];
+    const order = [
+        {
+            user:`${authorizeBuy._id}`,
+            
+        }
+    ];
     let productos = [];
     let authorizeBuy;
     const trolleyList = document.getElementById("trolley-list");
@@ -69,10 +74,10 @@
             let item = productos.filter((producto) => {
                 return producto._id === itemId
             })
-            console.log('Trolley', trolley)
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
+
             const order2 = {
                 user:`${authorizeBuy._id}`,
                 product:`${item[0]._id}`,
@@ -85,6 +90,7 @@
                 ]
             }
             console.log('order2', order2)
+            console.log('order', order)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
             linea.innerHTML = `<div class="d-flex justify-content-between align-items-start">

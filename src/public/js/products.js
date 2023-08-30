@@ -17,6 +17,17 @@
                 background: "linear-gradient(to right, #00c1a9, #559f93)",
             }
         }).showToast();
+        if(trolley.length > 0){
+        let buttonBuy = document.createElement("button");
+            buttonBuy.className = "btn btn-outline-info";
+            buttonBuy.innerText = "Comprar"
+            if (authorizeBuy) {
+                buttonBuy.addEventListener("click", () => buyCart);
+            } else {
+                buttonBuy.addEventListener("click", buyNoCart);
+            }
+            trolleyEvent.append(buttonBuy);
+    }
     }
     function calculoTotal() {
         return trolley.reduce((total, ItemId) => {
@@ -52,7 +63,6 @@
         //saveCartToStorage()
         //saveTrolley()
         trolleyList.innerHTML = "";
-        trolleyEvent.innerHTML = "";
         let cartWhithoudRepeatedElements = [...new Set(trolley)];
         cartWhithoudRepeatedElements.forEach((itemId) => {
             let item = productos.filter((producto) => {
@@ -73,15 +83,6 @@
                     }
                 ]
             }
-            order.push ({
-                items: item.map(items => ({
-                id: items.menuId,
-                title: items.menu,
-                price: items.price,
-                qty: quantity
-            })),
-            })
-            console.log('order', order)
             console.log('order2', order2)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
@@ -103,15 +104,6 @@
             linea.append(contbutoonD);
             trolleyList.append(linea);
         })
-            let buttonBuy = document.createElement("button");
-            buttonBuy.className = "btn btn-outline-info";
-            buttonBuy.innerText = "Comprar"
-            if (authorizeBuy) {
-                buttonBuy.addEventListener("click", () => buyCart);
-            } else {
-                buttonBuy.addEventListener("click", buyNoCart);
-            }
-        trolleyEvent.append(buttonBuy);
         valueTotalList.innerHTML = calculoTotal() + "$"
     }
     fetch('/api/sessions/me')

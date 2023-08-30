@@ -72,7 +72,7 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
-                let prueba = trolley.map(obj => obj)
+                let prueba = trolley.map(obj => {return {id:obj}})
                 let repeat = order[0].products.find(product => {
                     product.product === trolley
                 console.log('Products',product.product);

@@ -23,7 +23,7 @@
             buttonBuy.className = "btn btn-outline-info";
             buttonBuy.innerText = "Comprar"
             if (authorizeBuy) {
-                buttonBuy.addEventListener("click", () => buyCart);
+                buttonBuy.addEventListener("click", buyCart(order));
             } else {
                 buttonBuy.addEventListener("click", buyNoCart);
             }

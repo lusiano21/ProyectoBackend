@@ -28,15 +28,14 @@ export const get = async (query = {}) => {
 export const create = async (body) => {
   let {
     user: userId,
-    product: productId,
     products: productsRequest,
   } = body
-  console.log('Enviado desde El Front',userId,productId,productsRequest)
+  console.log('Enviado desde El Front',userId,productsRequest)
   const user = await getUserById(userId)
   if (!user) {
     throw new NotFoundException('User not found')
   }
-  const products =  await getProductsById(productId)
+  const products =  await getProductsById(productsRequest[0].product)
   if (!products) {
     throw new NotFoundException('Products not found')
   }

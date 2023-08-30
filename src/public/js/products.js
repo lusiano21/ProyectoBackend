@@ -73,11 +73,12 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
-                order.products.push({
+                /*order.products.push({
                     id: item[0].menuId,
                     price: item[0].price,
                     quantity: quantity
-                })
+                })*/
+                console.log('order', order)
             }
             console.log('order', order)
             let linea = document.createElement("li");

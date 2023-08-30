@@ -18,8 +18,8 @@
             }
         }).showToast();
         trolleyEvent.innerHTML = "";
-        if(trolley.length > 0){
-        let buttonBuy = document.createElement("button");
+        if (trolley.length > 0) {
+            let buttonBuy = document.createElement("button");
             buttonBuy.className = "btn btn-outline-info";
             buttonBuy.innerText = "Comprar"
             if (authorizeBuy) {
@@ -28,7 +28,7 @@
                 buttonBuy.addEventListener("click", buyNoCart);
             }
             trolleyEvent.append(buttonBuy);
-    }
+        }
     }
     function calculoTotal() {
         return trolley.reduce((total, ItemId) => {
@@ -40,15 +40,15 @@
 
     }
     function buyCart(order) {
-        fetch('/api/sessions/order',{
+        fetch('/api/sessions/order', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(order),
         })
-        .then((res) => res.json())
-        .then((data) => console.log('data',data))
+            .then((res) => res.json())
+            .then((data) => console.log('data', data))
     }
     function buyNoCart() {
         console.log('No puedes Comprar')
@@ -72,22 +72,13 @@
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)
-
-            const order2 = {
-                user:`${authorizeBuy._id}`,
-                product:`${item[0]._id}`,
-                products: [
-                    {
-                        id: item[0].menuId,
-                        price: item[0].price,
-                        quantity: quantity
-                    }
-                ]
+            if(authorizeBuy){
+                order.products.push({
+                    id: item[0].menuId,
+                    price: item[0].price,
+                    quantity: quantity
+                })
             }
-            order.push({
-                user:`${authorizeBuy._id}`
-            })
-            console.log('order2', order2)
             console.log('order', order)
             let linea = document.createElement("li");
             linea.className = "list-group-item"
@@ -116,6 +107,10 @@
             if (data.success) {
                 if (data.payload) {
                     authorizeBuy = data.payload
+                    order.push({
+                        user: `${authorizeBuy._id}`,
+                        products: []
+                    })
                 }
             }
         })

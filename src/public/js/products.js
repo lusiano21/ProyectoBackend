@@ -73,7 +73,10 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
+                let repeat = order[0].productos.find(product => product._id === trolley);
+                console.log(repeat)
                 order[0].products.push({
+                    product: item[0]._id,
                     id: item[0].menuId,
                     price: item[0].price,
                     quantity: quantity
@@ -136,16 +139,18 @@
                 price_product.innerHTML = `Precio: $${element.price}`
                 let blockBotton = document.createElement("div")
                 blockBotton.className = " d-flex justify-content-between"
-                let cardBotton = document.createElement("button");
                 let infocardBotton = document.createElement("button");
                 infocardBotton.className = "btn btn-outline-info"
-                infocardBotton.innerText = "Ver"
-                infocardBotton.setAttribute("info", element._id)
-                cardBotton.innerText = "Comprar"
-                cardBotton.className = "btn btn-outline-primary"
-                cardBotton.setAttribute("mark", element._id)
-                cardBotton.addEventListener("click", addCartToTrolley)
-                blockBotton.append(cardBotton)
+                infocardBotton.innerText = "Ver";
+                infocardBotton.setAttribute("info", element._id);
+                if(authorizeBuy){
+                    let cardBotton = document.createElement("button");
+                    cardBotton.innerText = "Comprar"
+                    cardBotton.className = "btn btn-outline-primary"
+                    cardBotton.setAttribute("mark", element._id)
+                    cardBotton.addEventListener("click", addCartToTrolley)
+                    blockBotton.append(cardBotton)
+                }
                 blockBotton.append(infocardBotton)
                 card.append(menu);
                 card.append(name_product);

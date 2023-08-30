@@ -69,7 +69,7 @@
             let item = productos.filter((producto) => {
                 return producto._id === itemId
             })
-            console.log('Item', item)
+            console.log('Trolley', trolley)
             let quantity = trolley.reduce((total, id) => {
                 return id === itemId ? total += 1 : total
             }, 0)

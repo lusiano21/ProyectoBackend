@@ -100,7 +100,6 @@
             buttonDelete.dataset.item = itemId;
             buttonDelete.addEventListener("click", deleteCart);
             contbutoonD.append(buttonDelete);
-            contbutoonD.append(buttonBuy)
             linea.append(contbutoonD);
             trolleyList.append(linea);
         })

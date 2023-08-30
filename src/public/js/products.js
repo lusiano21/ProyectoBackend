@@ -37,7 +37,6 @@
             })
             return total + item[0].price
         }, 0)
-
     }
     function buyCart(order) {
         fetch('/api/sessions/order', {
@@ -73,10 +72,12 @@
                 return id === itemId ? total += 1 : total
             }, 0)
             if(authorizeBuy){
+                let prueba = trolley.map(obj => obj)
                 let repeat = order[0].products.find(product => {
                     product.product === trolley
                 console.log('Products',product.product);
-                console.log('Trolley',trolley);                
+                console.log('Trolley',trolley);       
+                console.log('Prueba',prueba);            
                 });
                 console.log('Repeat', repeat)
                 order[0].products.push({

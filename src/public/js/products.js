@@ -17,6 +17,7 @@
                 background: "linear-gradient(to right, #00c1a9, #559f93)",
             }
         }).showToast();
+        trolleyEvent.innerHTML = "";
         if(trolley.length > 0){
         let buttonBuy = document.createElement("button");
             buttonBuy.className = "btn btn-outline-info";

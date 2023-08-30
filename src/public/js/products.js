@@ -1,11 +1,6 @@
 (function () {
     let trolley = [];
-    const order = [
-        {
-            user:`${authorizeBuy._id}`,
-            
-        }
-    ];
+    const order = [];
     let productos = [];
     let authorizeBuy;
     const trolleyList = document.getElementById("trolley-list");
@@ -89,6 +84,9 @@
                     }
                 ]
             }
+            order.push({
+                user:`${authorizeBuy._id}`
+            })
             console.log('order2', order2)
             console.log('order', order)
             let linea = document.createElement("li");
